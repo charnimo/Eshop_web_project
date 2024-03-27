@@ -1,12 +1,14 @@
-<?php      
-    $host = "localhost";  
-    $user = "root";  
-    $password = '';  
-    $db_name = "project1";  
-      
-    $con = mysqli_connect($host, $user, $password, $db_name);  
-    if(mysqli_connect_errno()) {  
-        die("Failed to connect with MySQL: ". mysqli_connect_error());  
-    }  
-    echo"yess";
-?>  
+<?php
+
+$host = 'localhost';
+$dbname = 'eshopweb';//lezm nafs l esem fi phpmyadmin, w table esmha users, w table fih id, name, email, password
+$username = 'root';
+$password = '';
+
+$conn = new mysqli($host, $username, $password, $dbname);
+
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+?>
+?>
