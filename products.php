@@ -66,7 +66,14 @@
                     </div>
                 </div>
             </form>
+
         </div>
     </div>
+
+    <h1>Liste des Produits</h1>
+    <div id="productList">
+        <?php include 'display_products.php'; ?>
+    </div>
+
 </body>
 </html>

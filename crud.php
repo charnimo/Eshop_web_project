@@ -1,20 +1,30 @@
 <?php
 if (isset($_POST['addproduct'])) {
-    // Retrieving form data
+    //post data
     $productName = $_POST['productName'];
     $productDescription = $_POST['productDescription'];
     $productPrice = $_POST['productPrice'];
-
-    // Handling file upload
-    $targetDirectory = "uploads/"; // Change this to your desired directory
-    $targetFile = $targetDirectory . basename($_FILES["productImage"]["name"]);
+    
+    $targetDirectory = "uploads/"; 
+    $uploadedFileName = $_FILES["productImage"]["name"]; 
+    $customFileName = $_POST['productName']; 
+    $fileExtension = pathinfo($uploadedFileName, PATHINFO_EXTENSION);
+    $targetFile = $targetDirectory . $customFileName . '_' . date("Y-m-d_His") . '.' . $fileExtension; 
 
     if (move_uploaded_file($_FILES["productImage"]["tmp_name"], $targetFile)) {
-        echo "The file ". htmlspecialchars( basename( $_FILES["productImage"]["name"])). " has been uploaded.";
+
+        include 'connection.php';
+
+        $sql = "INSERT INTO produits (name, description, price, image) VALUES ('$productName', '$productDescription', '$productPrice', '$targetFile')";
+
+        if (mysqli_query($conn, $sql)) {
+            header("Location: products.php");
+            exit; 
+        } else {
+            echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+        }
     } else {
         echo "Sorry, there was an error uploading your file.";
     }
-
-    // Now you can process the form data and perform database operations as needed
 }
 ?>
