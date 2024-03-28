@@ -4,7 +4,7 @@ if (isset($_POST['addproduct'])) {
     $productName = $_POST['productName'];
     $productDescription = $_POST['productDescription'];
     $productPrice = $_POST['productPrice'];
-    
+    $productCategory = $_POST['productCategory'];
     $targetDirectory = "uploads/"; 
     $uploadedFileName = $_FILES["productImage"]["name"]; 
     $customFileName = $_POST['productName']; 
@@ -15,7 +15,7 @@ if (isset($_POST['addproduct'])) {
 
         include 'connection.php';
 
-        $sql = "INSERT INTO produits (name, description, price, image) VALUES ('$productName', '$productDescription', '$productPrice', '$targetFile')";
+        $sql = "INSERT INTO products (name, description, price, image, category) VALUES ('$productName', '$productDescription', '$productPrice', '$targetFile','$productCategory')";
 
         if (mysqli_query($conn, $sql)) {
             header("Location: products.php");

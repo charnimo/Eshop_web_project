@@ -4,29 +4,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <!-- Font Awesome -->
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" />
 
-    <!-- Bootstrap CSS -->
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- jQuery -->
+
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha384-..." crossorigin="anonymous"></script>
 
-    <!-- Bootstrap JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-..."></script>
 </head>
 <body>
-    <div class="container bg-dark text-light p-3 rounded my-4">
+    <div class="container bg-light text-light p-3 rounded my-4">
         <div class="d-flex align-items-center justify-content-between">
+        
             <h2>
-                <a href="index.html" class="text-white  text-decoration-none">BHIMA Store</a>
+                <a href="index.html" class="text-black  text-decoration-none">BHIMA Store</a>
             </h2>
-            <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addproduct"><i class="fa-solid fa-plus"></i>Add Product</button>
+            <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addproduct"><i class="fas fa-plus"></i></button>
         </div>
+        
+    </div>
+    <div class=id="productList">
+        <?php include 'display_products.php'; ?>
     </div>
 
-    <!-- Modal for adding a product -->
+
     <div class="modal fade" id="addproduct" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <form action="crud.php" method="post" enctype="multipart/form-data">
@@ -50,6 +54,16 @@
                             <span class="input-group-text">Product Price</span>
                             <input type="text" class="form-control" placeholder="Enter product price" aria-label="Product Price" min="1" name="productPrice">
                         </div>
+                        <div class="input-group mb-3">
+                            <label class="input-group-text" for="productCategory">Product category</label>
+                                <select class="form-select" id="productCategory" name="productCategory">
+                                    <option value="TV">TV</option>
+                                    <option value="PC">PC</option>
+                                    <option value="Electronics">Electronics</option>
+                                    <option value="Consoles">Consoles</option>
+                                </select>
+                        </div>
+
 
                         <div class="mb-3">
                             <label for="productImage" class="form-label">Product Image</label>
@@ -58,7 +72,6 @@
                                 <label class="input-group-text" for="productImage">Upload</label>
                             </div>
                         </div>
-                        <!-- Add more input groups for additional product details if needed -->
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -69,11 +82,8 @@
 
         </div>
     </div>
-
-    <h1>Liste des Produits</h1>
-    <div id="productList">
-        <?php include 'display_products.php'; ?>
-    </div>
+    
+    
 
 </body>
 </html>

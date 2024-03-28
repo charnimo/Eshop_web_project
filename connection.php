@@ -1,7 +1,7 @@
 <?php
 
 $host = 'localhost';
-$dbname = 'eshopweb';//lezm nafs l esem fi phpmyadmin, w table esmha users, w table fih id, name, email, password
+$dbname = 'project1';//lezm nafs l esem fi phpmyadmin, w table esmha users, w table fih id, name, email, password
 $username = 'root';
 $password = '';
 
