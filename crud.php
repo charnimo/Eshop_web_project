@@ -15,7 +15,7 @@ if (isset($_POST['addproduct'])) {
 
         include 'connection.php';
 
-        $sql = "INSERT INTO products (name, description, price, image, category) VALUES ('$productName', '$productDescription', '$productPrice', '$targetFile','$productCategory')";
+        $sql = "INSERT INTO produits (name, description, price, image, category) VALUES ('$productName', '$productDescription', '$productPrice', '$targetFile','$productCategory')";
 
         if (mysqli_query($conn, $sql)) {
             header("Location: products.php");

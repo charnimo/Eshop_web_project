@@ -1,28 +1,29 @@
 <?php
 
-//ebda session hatta ken user 7at password ghalta (y)
-session_start(); 
-
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["signin"])) {
     include 'connection.php';
 
     $username = $_POST['username'];
     $password = $_POST['password'];
 
-    $sql = "SELECT * FROM users WHERE name='$username'";
+    $sql = "SELECT * FROM users WHERE name='$username' AND password='$password'";
     $result = mysqli_query($conn, $sql);
 
     if (mysqli_num_rows($result) > 0) {
         $row = mysqli_fetch_assoc($result);
         //la hash la wedhni
-        if ($password == $row['password']) {
-            $_SESSION['username'] = $username;
-
-            header("Location: index.html");
-            exit;
+        if ($row['id'] == 0) {
+            //clear all old sessions:
+            session_destroy();
+            session_start();
+            $_SESSION['admin'] = 0;
+            header("Location: products.php");
         } else {
-            //to change add error message
-            echo "Incorrect password!";
+            //clear all old sessions:
+            session_destroy();
+            session_start();
+            $_SESSION['user'] = $row['id'];
+            header("Location: index.html");
         }
     } else {
         //kif kif add error message

@@ -103,7 +103,7 @@
                         <?php
                         include 'connection.php'; 
 
-                        $sql = "SELECT * FROM products";
+                        $sql = "SELECT * FROM produits";
                         $result = mysqli_query($conn, $sql);
 
                         if (mysqli_num_rows($result) > 0) {
