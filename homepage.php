@@ -171,6 +171,19 @@
       .bd-mode-toggle .dropdown-menu .active .bi {
         display: block !important;
       }
+      .carousel-item img {
+    transition: transform 0.3s ease;
+}
+.carousel-item img:hover {
+    transform: scale(1.1);
+}
+.image-container {
+    transition: transform 0.3s ease;
+}
+
+.image-container:hover {
+    transform: scale(1.1);
+}
     </style>
 
     <!-- Custom styles for this template -->
@@ -195,40 +208,7 @@
 </svg>
 
 <!-- Your existing HTML content -->
-<div class="dropdown position-fixed bottom-0 end-0 mb-3 me-3 bd-mode-toggle">
-      <button class="btn btn-bd-primary py-2 dropdown-toggle d-flex align-items-center"
-              id="bd-theme"
-              type="button"
-              aria-expanded="false"
-              data-bs-toggle="dropdown"
-              aria-label="Toggle theme (auto)">
-        <svg class="bi my-1 theme-icon-active" width="1em" height="1em"><use href="#circle-half"></use></svg>
-        <span class="visually-hidden" id="bd-theme-text">Toggle theme</span>
-      </button>
-      <ul class="dropdown-menu dropdown-menu-end shadow" aria-labelledby="bd-theme-text">
-        <li>
-          <button type="button" class="dropdown-item d-flex align-items-center" data-bs-theme-value="light" aria-pressed="false">
-            <svg class="bi me-2 opacity-50" width="1em" height="1em"><use href="#sun-fill"></use></svg>
-            Light
-            <svg class="bi ms-auto d-none" width="1em" height="1em"><use href="#check2"></use></svg>
-          </button>
-        </li>
-        <li>
-          <button type="button" class="dropdown-item d-flex align-items-center" data-bs-theme-value="dark" aria-pressed="false">
-            <svg class="bi me-2 opacity-50" width="1em" height="1em"><use href="#moon-stars-fill"></use></svg>
-            Dark
-            <svg class="bi ms-auto d-none" width="1em" height="1em"><use href="#check2"></use></svg>
-          </button>
-        </li>
-        <li>
-          <button type="button" class="dropdown-item d-flex align-items-center active" data-bs-theme-value="auto" aria-pressed="true">
-            <svg class="bi me-2 opacity-50" width="1em" height="1em"><use href="#circle-half"></use></svg>
-            Auto
-            <svg class="bi ms-auto d-none" width="1em" height="1em"><use href="#check2"></use></svg>
-          </button>
-        </li>
-      </ul>
-    </div>
+
 
     
 <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
@@ -261,12 +241,12 @@
       </div>
       <div class="offcanvas-body">
         <ul class="navbar-nav mx-auto">
-          <li class="nav-item mb-2"><a class="nav-link" href="/Eshop_web_project/homepage.php"> <svg class="bi" width="24" height="24"><use xlink:href="#aperture"/></svg>
+          <li class="nav-item mb-2"><a class="nav-link" href="/homepage.php"> <svg class="bi" width="24" height="24"><use xlink:href="#aperture"/></svg>
           </a></li>
-          <li class="nav-item mb-2"><a class="nav-link" href="/Eshop_web_project/homepage.php">Acceuil</a></li>
-          <li class="nav-item mb-2"><a class="nav-link" href="/Eshop_web_project/products.php">Product</a></li>
-          <li class="nav-item mb-2"><a class="nav-link" href="/Eshop_web_project/contact.html">Contact Us</a></li>
-          <li class="nav-item mb-2"><a class="nav-link" href="/Eshop_web_project/Panier.php">
+          <li class="nav-item mb-2"><a class="nav-link" href="/homepage.php">Acceuil</a></li>
+          <li class="nav-item mb-2"><a class="nav-link" href="/products.php">Product</a></li>
+          <li class="nav-item mb-2"><a class="nav-link" href="/contact.html">Contact Us</a></li>
+          <li class="nav-item mb-2"><a class="nav-link" href="/Checkout.php">
             <svg class="bi" width="24" height="24"><use xlink:href="#cart"/></svg>
           </a></li>
 <li class="nav-server-side-login" style="display: flex; align-items: center; justify-content: space-between;">
@@ -369,7 +349,7 @@
     
   </div>
   <div class="d-md-flex flex-md-equal w-100 my-md-3 ps-md-3">
-  <div class="text-bg-dark me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden">
+  <div class="text-bg-danger me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden">
       <div class="my-3 py-3">
         <h2 class="display-5">L'Univers Gaming</h2>
         <p class="lead">Titane.Si robuste.Si leger.Si pro</p>
@@ -505,6 +485,20 @@
         });
     });
 </script>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const container = document.querySelector(".container");
+
+    container.addEventListener("mouseover", function () {
+        container.style.transform = "translateY(-5px)";
+    });
+
+    container.addEventListener("mouseout", function () {
+        container.style.transform = "translateY(0)";
+    });
+});
+</script>
+
 
 </body>
 </html>
