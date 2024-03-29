@@ -23,7 +23,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["signup"])) {
     $sql = "INSERT INTO users (name, email, password) VALUES ('$username', '$email', '$password')";
 
     if (mysqli_query($conn, $sql)) {
-        header("Location: login.html");
+        header("Location: login.php");
     } else {
         echo "Error: " . $sql . "<br>" . mysqli_error($conn);
     }

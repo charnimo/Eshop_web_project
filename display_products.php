@@ -222,37 +222,41 @@
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha384-..." crossorigin="anonymous"></script>
     <script>
-        $(document).ready(function () {
-            // Category Filtering
-            $('.category-btn').click(function () {
-                var category = $(this).data('category');
-                $('.product-card').removeClass('d-none'); // Show all product cards
-                if (category !== 'all') {
-                    $('.product-card').not('[data-category="' + category + '"]').addClass('d-none'); // Hide cards not matching the selected category
-                }
+    $(document).ready(function () {
+        $('.category-btn').click(function () {
+            var category = $(this).data('category');
+            $('.product-card').removeClass('d-none');
+            if (category !== 'all') {
+                $('.product-card').not('[data-category="' + category + '"]').addClass('d-none');
+            }
+        });
+        $('#sort-asc').click(function () {
+            var products = $('.product-card').get();
+            products.sort(function(a, b) {
+                var priceA = parseFloat($(a).find('.card-text').text().replace('Price: $', ''));
+                var priceB = parseFloat($(b).find('.card-text').text().replace('Price: $', ''));
+                return priceA - priceB;
             });
-
-            // Price Sorting
-            $('#sort-asc').click(function () {
-                var products = $('.product-card').get();
-                products.sort(function(a, b) {
-                    var priceA = parseFloat($(a).find('.card-text').text().replace('Price: $', ''));
-                    var priceB = parseFloat($(b).find('.card-text').text().replace('Price: $', ''));
-                    return priceA - priceB;
-                });
-                $('#product-container').html(products);
-            });
-
-            $('#sort-desc').click(function () {
-                var products = $('.product-card').get();
-                products.sort(function(a, b) {
-                    var priceA = parseFloat($(a).find('.card-text').text().replace('Price: $', ''));
-                    var priceB = parseFloat($(b).find('.card-text').text().replace('Price: $', ''));
-                    return priceB - priceA;
-                });
-                $('#product-container').html(products);
+            $('#product-container').empty(); 
+            $.each(products, function(index, element) {
+                $('#product-container').append(element);
             });
         });
-    </script>
+
+        $('#sort-desc').click(function () {
+            var products = $('.product-card').get();
+            products.sort(function(a, b) {
+                var priceA = parseFloat($(a).find('.card-text').text().replace('Price: $', ''));
+                var priceB = parseFloat($(b).find('.card-text').text().replace('Price: $', ''));
+                return priceB - priceA;
+            });
+            $('#product-container').empty();
+            $.each(products, function(index, element) {
+                $('#product-container').append(element);
+            });
+        });
+    });
+</script>
+
 </body>
 </html>

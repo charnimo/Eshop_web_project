@@ -1,14 +1,28 @@
+<?php
+session_start();
+include "navbar.php"
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <tite>Document</title>
+    <title>user products</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/product/">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" />
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+
     <link rel='stylesheet' href='https://netdna.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css'>
 
 <script src='https://netdna.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js'></script>
 <style>
-    body{margin-top:20px;
+    body{
 background:#f1f2f7;
 }
 
@@ -168,69 +182,18 @@ background:#f1f2f7;
 .pro-d-head {
     font-size: 18px;
     font-weight: 300;
+
+    
 }
+
+
 
 </style>
 </head>
 
 <body>
+<
 
-<nav class="navbar navbar-expand-md bg-dark sticky-top border-bottom" data-bs-theme="dark">
-  <div class="container">
-    <a class="navbar-brand d-md-none" href="#">
-      <svg class="bi" width="24" height="24"><use xlink:href="#aperture"/></svg>
-      Aperture
-    </a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvas" aria-controls="offcanvas" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvas" aria-labelledby="offcanvasLabel">
-      <div class="offcanvas-header">
-        <h5 class="offcanvas-title" id="offcanvasLabel">Aperture</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-      </div>
-      <div class="offcanvas-body">
-        <ul class="navbar-nav mx-auto">
-          <li class="nav-item mb-2"><a class="nav-link" href="/homepage.php"> <svg class="bi" width="24" height="24"><use xlink:href="#aperture"/></svg>
-          </a></li>
-          <li class="nav-item mb-2"><a class="nav-link" href="/homepage.php">Acceuil</a></li>
-          <li class="nav-item mb-2"><a class="nav-link" href="/products.php">Product</a></li>
-          <li class="nav-item mb-2"><a class="nav-link" href="/contact.html">Contact Us</a></li>
-          <li class="nav-item mb-2"><a class="nav-link" href="/Checkout.php">
-            <svg class="bi" width="24" height="24"><use xlink:href="#cart"/></svg>
-          </a></li>
-<li class="nav-server-side-login" style="display: flex; align-items: center; justify-content: space-between;">
-    <?php
-    if (isset($_SESSION['admin']) || isset($_SESSION['user']))   {
-        echo '<a href="logout.php" class="nav-link text-light text-decoration-none btn btn-primary">
-                <i class="fas fa-sign-out-alt"></i> Logout
-              </a>';
-    } else {
-        echo '<a href="login.html" class="nav-link text-light text-decoration-none btn btn-primary">
-                <i class="fas fa-user"></i> Login
-              </a>';
-    }
-    ?>
-
-    <div id="user-status" style="margin-left: 100px;">  
-        <?php
-        if (isset($_SESSION['admin'])) {
-            echo "Logged in as:  Admin";
-        } else if (isset($_SESSION['user'])) {
-            echo "Logged in as:  " . $_SESSION['user'];
-        } else {
-            echo "Not logged in";
-        }
-        ?>
-    </div>
-</li>
-    </div>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</nav>
 
 <div class="container bootdey">
     <div class="col-md-3">
@@ -244,7 +207,7 @@ background:#f1f2f7;
                 Category
             </header>
             <div class="panel-body">
-                <ul class="nav prod-cat">
+                <ul class="nav prod-cat category-list">
                 <li><button class="btn btn-link category-btn" data-category="all">All</button></li>
                         <li><button class="btn btn-link category-btn" data-category="TV">TV</button></li>
                         <li><button class="btn btn-link category-btn" data-category="PC">PC</button></li>
@@ -271,36 +234,11 @@ background:#f1f2f7;
             <div class="panel-body">
                 <form role="form product-form">
                     <div class="form-group">
-                        <label>Brand</label>
-                        <select class="form-control hasCustomSelect" style="-webkit-appearance: menulist-button; width: 231px; position: absolute; opacity: 0; height: 34px; font-size: 12px;">
-                            <option>Wallmart</option>
-                            <option>Catseye</option>
-                            <option>Moonsoon</option>
-                            <option>Textmart</option>
-                        </select>
-                        <span class="customSelect form-control" style="display: inline-block;"><span class="customSelectInner" style="width: 209px; display: inline-block;">Wallmart</span></span>
+                    <h4>Sort by Price</h4>
+                    <button class="btn btn-secondary btn-sort" id="sort-asc">Low to High</button>
+                    <button class="btn btn-secondary btn-sort" id="sort-desc">High to Low</button>
                     </div>
-                    <div class="form-group">
-                        <label>Color</label>
-                        <select class="form-control hasCustomSelect" style="-webkit-appearance: menulist-button; width: 231px; position: absolute; opacity: 0; height: 34px; font-size: 12px;">
-                            <option>White</option>
-                            <option>Black</option>
-                            <option>Red</option>
-                            <option>Green</option>
-                        </select>
-                        <span class="customSelect form-control" style="display: inline-block;"><span class="customSelectInner" style="width: 209px; display: inline-block;">White</span></span>
-                    </div>
-                    <div class="form-group">
-                        <label>Type</label>
-                        <select class="form-control hasCustomSelect" style="-webkit-appearance: menulist-button; width: 231px; position: absolute; opacity: 0; height: 34px; font-size: 12px;">
-                            <option>Small</option>
-                            <option>Medium</option>
-                            <option>Large</option>
-                            <option>Extra Large</option>
-                        </select>
-                        <span class="customSelect form-control" style="display: inline-block;"><span class="customSelectInner" style="width: 209px; display: inline-block;">Small</span></span>
-                    </div>
-                    <button class="btn btn-primary" type="submit">Filter</button>
+
                 </form>
             </div>
         </section>
@@ -321,12 +259,21 @@ background:#f1f2f7;
                 </div>
             </div>
         </section>
-
+        <div class="product-container">
         <div class="row product-list">
-            <div class="col-md-4">
+    <?php
+    include 'connection.php'; 
+
+    $sql = "SELECT * FROM produits";
+    $result = mysqli_query($conn, $sql);
+
+    if (mysqli_num_rows($result) > 0) {
+        while ($row = mysqli_fetch_assoc($result)) {
+    ?>
+            <div class="col-md-4" data-category="<?php echo $row['category']; ?>">
                 <section class="panel">
                     <div class="pro-img-box">
-                        <img src="https://www.bootdey.com/image/250x220/FFB6C1/000000" alt="" />
+                        <img src="<?php echo $row['image']; ?>" alt="<?php echo $row['name']; ?>" />
                         <a href="#" class="adtocart">
                             <i class="fa fa-shopping-cart"></i>
                         </a>
@@ -335,282 +282,72 @@ background:#f1f2f7;
                     <div class="panel-body text-center">
                         <h4>
                             <a href="#" class="pro-title">
-                                Leopard Shirt Dress
+                                <?php echo $row['name']; ?>
                             </a>
                         </h4>
-                        <p class="price">$300.00</p>
+                        <p class="price">$<?php echo $row['price']; ?></p>
                     </div>
                 </section>
             </div>
-            <div class="col-md-4">
-                <section class="panel">
-                    <div class="pro-img-box">
-                        <img src="https://www.bootdey.com/image/250x220/6495ED/000000" alt="" />
-                        <a href="#" class="adtocart">
-                            <i class="fa fa-shopping-cart"></i>
-                        </a>
-                    </div>
+    <?php
+        }
+    } else {
+        echo "No products found";
+    }
 
-                    <div class="panel-body text-center">
-                        <h4>
-                            <a href="#" class="pro-title">
-                                Leopard Shirt Dress
-                            </a>
-                        </h4>
-                        <p class="price">$300.00</p>
-                    </div>
-                </section>
-            </div>
-            <div class="col-md-4">
-                <section class="panel">
-                    <div class="pro-img-box">
-                        <img src="https://www.bootdey.com/image/250x220/FF7F50/000000" alt="" />
-                        <a href="#" class="adtocart">
-                            <i class="fa fa-shopping-cart"></i>
-                        </a>
-                    </div>
+    mysqli_close($conn);
+    ?>
+</div>
 
-                    <div class="panel-body text-center">
-                        <h4>
-                            <a href="#" class="pro-title">
-                                Leopard Shirt Dress
-                            </a>
-                        </h4>
-                        <p class="price">$300.00</p>
-                    </div>
-                </section>
-            </div>
-            <div class="col-md-4">
-                <section class="panel">
-                    <div class="pro-img-box">
-                        <img src="https://www.bootdey.com/image/250x220/00BFFF/000000" alt="" />
-                        <a href="#" class="adtocart">
-                            <i class="fa fa-shopping-cart"></i>
-                        </a>
-                    </div>
-
-                    <div class="panel-body text-center">
-                        <h4>
-                            <a href="#" class="pro-title">
-                                Leopard Shirt Dress
-                            </a>
-                        </h4>
-                        <p class="price">$300.00</p>
-                    </div>
-                </section>
-            </div>
-            <div class="col-md-4">
-                <section class="panel">
-                    <div class="pro-img-box">
-                        <img src="https://www.bootdey.com/image/250x220/00CED1/000000" alt="" />
-                        <a href="#" class="adtocart">
-                            <i class="fa fa-shopping-cart"></i>
-                        </a>
-                    </div>
-
-                    <div class="panel-body text-center">
-                        <h4>
-                            <a href="#" class="pro-title">
-                                Leopard Shirt Dress
-                            </a>
-                        </h4>
-                        <p class="price">$300.00</p>
-                    </div>
-                </section>
-            </div>
-            <div class="col-md-4">
-                <section class="panel">
-                    <div class="pro-img-box">
-                        <img src="https://www.bootdey.com/image/250x220/9400D3/000000" alt="" />
-                        <a href="#" class="adtocart">
-                            <i class="fa fa-shopping-cart"></i>
-                        </a>
-                    </div>
-
-                    <div class="panel-body text-center">
-                        <h4>
-                            <a href="#" class="pro-title">
-                                Leopard Shirt Dress
-                            </a>
-                        </h4>
-                        <p class="price">$300.00</p>
-                    </div>
-                </section>
-            </div>
-            <div class="col-md-4">
-                <section class="panel">
-                    <div class="pro-img-box">
-                        <img src="https://www.bootdey.com/image/250x220/FFD700/000000" alt="" />
-                        <a href="#" class="adtocart">
-                            <i class="fa fa-shopping-cart"></i>
-                        </a>
-                    </div>
-
-                    <div class="panel-body text-center">
-                        <h4>
-                            <a href="#" class="pro-title">
-                                Leopard Shirt Dress
-                            </a>
-                        </h4>
-                        <p class="price">$300.00</p>
-                    </div>
-                </section>
-            </div>
-            <div class="col-md-4">
-                <section class="panel">
-                    <div class="pro-img-box">
-                        <img src="https://www.bootdey.com/image/250x220/ADD8E6/000000" alt="" />
-                        <a href="#" class="adtocart">
-                            <i class="fa fa-shopping-cart"></i>
-                        </a>
-                    </div>
-
-                    <div class="panel-body text-center">
-                        <h4>
-                            <a href="#" class="pro-title">
-                                Leopard Shirt Dress
-                            </a>
-                        </h4>
-                        <p class="price">$300.00</p>
-                    </div>
-                </section>
-            </div>
-            <div class="col-md-4">
-                <section class="panel">
-                    <div class="pro-img-box">
-                        <img src="https://www.bootdey.com/image/250x220/20B2AA/000000" alt="" />
-                        <a href="#" class="adtocart">
-                            <i class="fa fa-shopping-cart"></i>
-                        </a>
-                    </div>
-
-                    <div class="panel-body text-center">
-                        <h4>
-                            <a href="#" class="pro-title">
-                                Leopard Shirt Dress
-                            </a>
-                        </h4>
-                        <p class="price">$300.00</p>
-                    </div>
-                </section>
-            </div>
-            <div class="col-md-4">
-                <section class="panel">
-                    <div class="pro-img-box">
-                        <img src="https://www.bootdey.com/image/250x220/3CB371/000000" alt="" />
-                        <a href="#" class="adtocart">
-                            <i class="fa fa-shopping-cart"></i>
-                        </a>
-                    </div>
-
-                    <div class="panel-body text-center">
-                        <h4>
-                            <a href="#" class="pro-title">
-                                Leopard Shirt Dress
-                            </a>
-                        </h4>
-                        <p class="price">$300.00</p>
-                    </div>
-                </section>
-            </div>
-            <div class="col-md-4">
-                <section class="panel">
-                    <div class="pro-img-box">
-                        <img src="https://www.bootdey.com/image/250x220/FFB6C1/000000" alt="" />
-                        <a href="#" class="adtocart">
-                            <i class="fa fa-shopping-cart"></i>
-                        </a>
-                    </div>
-
-                    <div class="panel-body text-center">
-                        <h4>
-                            <a href="#" class="pro-title">
-                                Leopard Shirt Dress
-                            </a>
-                        </h4>
-                        <p class="price">$300.00</p>
-                    </div>
-                </section>
-            </div>
-            <div class="col-md-4">
-                <section class="panel">
-                    <div class="pro-img-box">
-                        <img src="https://www.bootdey.com/image/250x220/C71585/000000" alt="" />
-                        <a href="#" class="adtocart">
-                            <i class="fa fa-shopping-cart"></i>
-                        </a>
-                    </div>
-
-                    <div class="panel-body text-center">
-                        <h4>
-                            <a href="#" class="pro-title">
-                                Leopard Shirt Dress
-                            </a>
-                        </h4>
-                        <p class="price">$300.00</p>
-                    </div>
-                </section>
-            </div>
-            <div class="col-md-4">
-                <section class="panel">
-                    <div class="pro-img-box">
-                        <img src="https://www.bootdey.com/image/250x220/191970/000000" alt="" />
-                        <a href="#" class="adtocart">
-                            <i class="fa fa-shopping-cart"></i>
-                        </a>
-                    </div>
-
-                    <div class="panel-body text-center">
-                        <h4>
-                            <a href="#" class="pro-title">
-                                Leopard Shirt Dress
-                            </a>
-                        </h4>
-                        <p class="price">$300.00</p>
-                    </div>
-                </section>
-            </div>
-            <div class="col-md-4">
-                <section class="panel">
-                    <div class="pro-img-box">
-                        <img src="https://www.bootdey.com/image/250x220/87CEEB/000000" alt="" />
-                        <a href="#" class="adtocart">
-                            <i class="fa fa-shopping-cart"></i>
-                        </a>
-                    </div>
-
-                    <div class="panel-body text-center">
-                        <h4>
-                            <a href="#" class="pro-title">
-                                Leopard Shirt Dress
-                            </a>
-                        </h4>
-                        <p class="price">$300.00</p>
-                    </div>
-                </section>
-            </div>
-            <div class="col-md-4">
-                <section class="panel">
-                    <div class="pro-img-box">
-                        <img src="https://www.bootdey.com/image/250x220/FFB6C1/000000" alt="" />
-                        <a href="#" class="adtocart">
-                            <i class="fa fa-shopping-cart"></i>
-                        </a>
-                    </div>
-
-                    <div class="panel-body text-center">
-                        <h4>
-                            <a href="#" class="pro-title">
-                                Leopard Shirt Dress
-                            </a>
-                        </h4>
-                        <p class="price">$300.00</p>
-                    </div>
-                </section>
-            </div>
+        
+            
+            
         </div>
     </div>
 </div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha384-..." crossorigin="anonymous"></script>
+<script>
+    $(document).ready(function(){
+        $('.category-btn').click(function(){
+            var category = $(this).data('category'); 
+            $('.product-list .col-md-4').each(function(){
+                var productCategory = $(this).data('category'); 
+                if(category === 'all' || productCategory === category){ 
+                    $(this).show();
+                } else {
+                    $(this).hide(); 
+                }
+            });
+        });
+
+        $('#sort-asc').click(function(event) {
+            event.preventDefault(); 
+            var $wrapper = $('.product-list');
+            var $products = $wrapper.find('.col-md-4');
+            $products.sort(function(a, b) {
+                var priceA = parseFloat($(a).find('.price').text().replace('$', ''));
+                var priceB = parseFloat($(b).find('.price').text().replace('$', ''));
+                return priceA - priceB;
+            });
+            $wrapper.empty().append($products);
+        });
+
+        $('#sort-desc').click(function(event) {
+            event.preventDefault(); 
+            var $wrapper = $('.product-list');
+            var $products = $wrapper.find('.col-md-4');
+            $products.sort(function(a, b) {
+                var priceA = parseFloat($(a).find('.price').text().replace('$', ''));
+                var priceB = parseFloat($(b).find('.price').text().replace('$', ''));
+                return priceB - priceA;
+            });
+            $wrapper.empty().append($products);
+        });
+    });
+</script>
+
+
+
 
 </body>
 </html>
