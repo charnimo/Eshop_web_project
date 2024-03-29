@@ -2,7 +2,7 @@
 <?php
     //admin bark yod5el lel products.php
     session_start();
-   if(!isset($_SESSION['admin']) || $_SESSION['admin'] != 0 || isset($_SESSION['user']))
+    if (!isset($_SESSION['admin']) || $_SESSION['admin'] != 1) 
     {
         echo "forbidden";
         exit;
