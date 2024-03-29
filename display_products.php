@@ -13,6 +13,21 @@
     <!-- Bootstrap JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-..."></script>
     <style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+    }
+
+    .container-fluid {
+        padding: 0;
+        margin: 0;
+    }
+
+    .row {
+        margin: 0;
+    }
+
     /* Modal Body CSS */
     .modal-body {
         padding: 20px;
@@ -22,6 +37,12 @@
     .product-image {
         width: 100%;
         height: auto;
+        cursor: pointer;
+        transition: transform .3s;
+    }
+
+    .product-image:hover {
+        transform: scale(1.1);
     }
 
     /* Product Details CSS */
@@ -29,8 +50,36 @@
         margin-top: 20px;
     }
 
-    .product-details p {
-        margin-bottom: 10px;
+    .product-card {
+        transition: transform .3s;
+    }
+
+    .product-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 15px rgba(0, 0, 0, 0.15);
+    }
+
+    .product-card .card {
+        border: none;
+        border-radius: 5px;
+    }
+
+    .product-card .card-img-top {
+        border-radius: 5px 5px 0 0;
+    }
+
+    .product-card .card-body {
+        padding: 15px;
+    }
+
+    .product-card .card-title {
+        margin-bottom: 5px;
+        font-weight: 600;
+    }
+
+    .product-card .card-text {
+        font-weight: 500;
+        color: #4a4a4a;
     }
 
     /* Sidebar CSS */
@@ -38,10 +87,12 @@
         background-color: #f8f9fa;
         padding: 20px;
         border-radius: 10px;
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
     }
 
     .sidebar h4 {
-        margin-bottom: 15px;
+        margin-bottom: 20px;
+        font-weight: 600;
     }
 
     .category-list {
@@ -54,6 +105,19 @@
         margin-bottom: 10px;
     }
 
+    .category-btn {
+        background-color: transparent;
+        border: none;
+        color: #4a4a4a;
+        padding: 0;
+        font-size: 14px;
+        transition: color .3s;
+    }
+
+    .category-btn:hover {
+        color: #007bff;
+    }
+
     .btn-sort {
         width: 100%;
         margin-bottom: 10px;
@@ -63,9 +127,9 @@
     @media (min-width: 992px) {
         .sidebar {
             position: fixed;
-            top: 10;
+            top: 100px;
             left: 0;
-            height: 100%;
+            height: calc(100vh - 70px);
             overflow-y: auto;
             width: 250px;
             z-index: 1000;
