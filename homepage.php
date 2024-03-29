@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!doctype html>
 <html lang="en" data-bs-theme="auto">
 <head>
@@ -244,7 +245,6 @@
     <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
   </symbol>
 </svg>
-
 <nav class="navbar navbar-expand-md bg-dark sticky-top border-bottom" data-bs-theme="dark">
   <div class="container">
     <a class="navbar-brand d-md-none" href="#">
@@ -260,9 +260,8 @@
         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
       </div>
       <div class="offcanvas-body">
-        <ul class="navbar-nav mx-auto"> 
-          <li class="nav-item mb-2"><a class="nav-link" href="/Eshop_web_project/homepage.php"> <!-- Added margin bottom -->
-            <svg class="bi" width="24" height="24"><use xlink:href="#aperture"/></svg>
+        <ul class="navbar-nav mx-auto">
+          <li class="nav-item mb-2"><a class="nav-link" href="/Eshop_web_project/homepage.php"> <svg class="bi" width="24" height="24"><use xlink:href="#aperture"/></svg>
           </a></li>
           <li class="nav-item mb-2"><a class="nav-link" href="/Eshop_web_project/homepage.php">Acceuil</a></li>
           <li class="nav-item mb-2"><a class="nav-link" href="/Eshop_web_project/products.php">Product</a></li>
@@ -270,16 +269,39 @@
           <li class="nav-item mb-2"><a class="nav-link" href="/Eshop_web_project/Panier.php">
             <svg class="bi" width="24" height="24"><use xlink:href="#cart"/></svg>
           </a></li>
-          <li class="nav-item mb-2"> 
-            <a href="login.html" class="nav-link text-light text-decoration-none"> 
-              <i class="fas fa-user"></i> 
-            </a>
+<li class="nav-server-side-login" style="display: flex; align-items: center; justify-content: space-between;">
+    <?php
+    if (isset($_SESSION['admin']) || isset($_SESSION['user']))   {
+        echo '<a href="logout.php" class="nav-link text-light text-decoration-none btn btn-primary">
+                <i class="fas fa-sign-out-alt"></i> Logout
+              </a>';
+    } else {
+        echo '<a href="login.html" class="nav-link text-light text-decoration-none btn btn-primary">
+                <i class="fas fa-user"></i> Login
+              </a>';
+    }
+    ?>
+
+    <div id="user-status" style="margin-left: 100px;">  
+        <?php
+        if (isset($_SESSION['admin'])) {
+            echo "Logged in as:  Admin";
+        } else if (isset($_SESSION['user'])) {
+            echo "Logged in as:  " . $_SESSION['user'];
+        } else {
+            echo "Not logged in";
+        }
+        ?>
+    </div>
+</li>
+    </div>
           </li>
         </ul>
       </div>
     </div>
   </div>
 </nav>
+
 
 
 

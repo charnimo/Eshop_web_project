@@ -26,8 +26,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["signin"])) {
             unset($_SESSION['admin']);
             unset($_SESSION['user']);
             session_start();
-            $_SESSION['user'] = $row['id'];
-            header("Location: index.html");
+            $_SESSION['user'] = $row['name'];
+            header("Location: homepage.php");
         }
     } else {
         //kif kif add error message
