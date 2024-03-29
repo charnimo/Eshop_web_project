@@ -266,7 +266,7 @@
           </a></li>
           <li class="nav-item mb-2"><a class="nav-link" href="/Eshop_web_project/homepage.php">Acceuil</a></li>
           <li class="nav-item mb-2"><a class="nav-link" href="/Eshop_web_project/products.php">Product</a></li>
-          <li class="nav-item mb-2"><a class="nav-link" href="/Eshop_web_project/ContactUS.php">Contact Us</a></li>
+          <li class="nav-item mb-2"><a class="nav-link" href="/Eshop_web_project/contact.html">Contact Us</a></li>
           <li class="nav-item mb-2"><a class="nav-link" href="/Eshop_web_project/Panier.php">
             <svg class="bi" width="24" height="24"><use xlink:href="#cart"/></svg>
           </a></li>
