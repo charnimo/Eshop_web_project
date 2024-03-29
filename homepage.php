@@ -7,7 +7,7 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.122.0">
-    <title>Product example · Bootstrap v5.3</title>
+    <title>Home</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/product/">
 
@@ -284,8 +284,6 @@
 
 
 
-
-<main>
 <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-inner">
                 <div class="carousel-item active">
@@ -313,23 +311,84 @@
                 <span class="visually-hidden">Next</span>
             </button>
         </div>
+      
+        <?php
+include 'connection.php';
+$sql = "SELECT * FROM produits ORDER BY RAND() LIMIT 6";
+$result = $conn->query($sql);
+?>
 
-  <div class="d-md-flex flex-md-equal w-100 my-md-3 ps-md-3">
-    <div class="text-bg-dark me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden">
-      <div class="my-3 py-3">
-        <h2 class="display-5">Buds S23 FE</h2>
-        <p class="lead">Entrez dans l'univers Galaxy S.</p>
-      </div>
-      <div class="bg-body-tertiary shadow-sm mx-auto" style="width: 80%; height: 500px; border-radius: 21px 21px 0 0; background-image: url('assets/imgs/Tab-S8-Ultra-14.jpg'); background-size: cover; background-position: center;"></div>
-    </div>
-    <div class="bg-body-tertiary me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden">
-      <div class="my-3 p-3">
-        <h2 class="display-5">Lave-vaisselle en pose libre</h2>
-        <p class="lead">Surveillance simple et intuitive de l'état.</p>
-      </div>
-      <div class="bg-body-tertiary shadow-sm mx-auto" style="width: 80%; height: 500px; border-radius: 21px 21px 0 0; background-image: url('assets/imgs/lave\ vaisselle.jpg'); background-size: cover; background-position: center;"></div>
-    </div>
-  </div>
+<style>
+    .product-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+
+    .product-item {
+        width: calc(33.33% - 20px);
+        margin-bottom: 20px;
+        padding: 10px;
+        box-sizing: border-box;
+        text-align: center;
+        position: relative; 
+    }
+
+    .product-image {
+        width: 100%;
+        height: 300px;
+        background-size: cover;
+        background-position: center;
+        border: 3px solid #ccc;
+        border-radius: 10px;
+        margin-bottom: 10px;
+        transition: filter 0.3s; 
+    }
+
+    .product-item:hover .product-image {
+        filter: brightness(0.8)
+    }
+
+    .product-info {
+        position: absolute; 
+        top: 50%; 
+        left: 50%; 
+        transform: translate(-50%, -50%); 
+        opacity: 0; 
+        background-color: rgba(0, 0, 0, 0.7); 
+        padding: 10px; 
+        border-radius: 10px; 
+        color: white; 
+        width: 90%; 
+        transition: opacity 0.3s; 
+    }
+
+    .product-item:hover .product-info {
+        opacity: 1; 
+        box-shadow: 2px 2px 20px rgba(0, 0, 1, 1); 
+    }
+</style>
+
+<div class="product-container">
+    <?php
+    while ($row = $result->fetch_assoc()) {
+        ?>
+        <div class="product-item">
+            <div class="product-image" style="background-image: url('<?php echo $row['image']; ?>');">
+                <div class="product-info">
+                    <h3><?php echo $row['name']; ?></h3>
+                    <p><?php echo $row['description']; ?></p>
+                    <p><?php echo $row['price']; ?>$</p>
+                </div>
+            </div>
+        </div>
+    <?php
+    }
+    ?>
+</div>
+
+
+
 
   <div class="d-md-flex flex-md-equal w-100 my-md-3 ps-md-3">
     <div class="bg-body-tertiary me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden">
@@ -368,7 +427,6 @@
   </div>
 
 
-</main>
 
 <footer class="container py-5">
   <div class="row">
