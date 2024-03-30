@@ -167,7 +167,7 @@
                         <?php
                         include 'connection.php'; 
 
-                        $sql = "SELECT * FROM produits";
+                        $sql = "SELECT * FROM products";
                         $result = mysqli_query($conn, $sql);
 
                         if (mysqli_num_rows($result) > 0) {

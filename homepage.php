@@ -185,6 +185,218 @@ include "navbar.php" ?>
 .image-container:hover {
     transform: scale(1.1);
 }
+.product-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+
+    .product-item {
+        width: calc(33.33% - 20px);
+        margin-bottom: 20px;
+        padding: 10px;
+        box-sizing: border-box;
+        text-align: center;
+        position: relative; 
+    }
+
+    .product-image {
+        width: 100%;
+        height: 300px;
+        background-size: cover;
+        background-position: center;
+        border: 3px solid #ccc;
+        border-radius: 10px;
+        margin-bottom: 10px;
+        transition: filter 0.3s; 
+    }
+
+    .product-item:hover .product-image {
+        filter: brightness(0.8)
+    }
+
+    .product-info {
+        position: absolute; 
+        top: 50%; 
+        left: 50%; 
+        transform: translate(-50%, -50%); 
+        opacity: 0; 
+        background-color: rgba(0, 0, 0, 0.7); 
+        padding: 10px; 
+        border-radius: 10px; 
+        color: white; 
+        width: 90%; 
+        transition: opacity 0.3s; 
+    }
+
+    .product-item:hover .product-info {
+        opacity: 1; 
+        box-shadow: 2px 2px 20px rgba(0, 0, 1, 1); 
+    }
+    .text-bg-dark {
+        position: relative;
+        overflow: hidden;
+        transition: filter 0.3s;
+    }
+
+    .text-bg-dark {
+        position: relative;
+        overflow: hidden;
+        transition: filter 0.3s;
+    }
+
+    .text-bg-dark:hover {
+        filter: brightness(0.8);
+    }
+
+    .text-bg-dark .bg-body-tertiary {
+        transition: transform 0.3s, width 0.3s, height 0.3s;
+    }
+
+    .text-bg-dark:hover .bg-body-tertiary {
+        transform: translateY(-10px);
+        width: 90%;
+        height: 550px;
+    }
+
+    .text-bg-dark .product-info {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        opacity: 0;
+        background-color: rgba(0, 0, 0, 0.7);
+        padding: 10px;
+        border-radius: 10px;
+        color: white;
+        width: 90%;
+        transition: opacity 0.3s;
+    }
+
+    .text-bg-dark:hover .product-info {
+        opacity: 1;
+        box-shadow: 2px 2px 20px rgba(0, 0, 1, 1);
+    }
+    tnyuntn
+    .bg-body-tertiary {
+        position: relative;
+        overflow: hidden;
+        transition: filter 0.3s;
+    }
+
+    .bg-body-tertiary {
+        position: relative;
+        overflow: hidden;
+        transition: filter 0.3s;
+    }
+
+    .bg-body-tertiary:hover {
+        filter: brightness(0.8);
+    }
+
+    .bg-body-tertiary .bg-body-tertiary {
+        transition: transform 0.3s, width 0.3s, height 0.3s;
+    }
+
+    .bg-body-tertiary:hover .bg-body-tertiary {
+        transform: translateY(-10px);
+        width: 90%;
+        height: 550px;
+    }
+
+    .bg-body-tertiary .product-info {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        opacity: 0;
+        background-color: rgba(0, 0, 0, 0.7);
+        padding: 10px;
+        border-radius: 10px;
+        color: white;
+        width: 90%;
+        transition: opacity 0.3s;
+    }
+
+    .bg-body-tertiary:hover .product-info {
+        opacity: 1;
+        box-shadow: 2px 2px 20px rgba(0, 0, 1, 1);
+    }
+    
+    .text-bg-warning {
+        position: relative;
+        overflow: hidden;
+        transition: filter 0.3s;
+    }
+
+    .text-bg-warning {
+        position: relative;
+        overflow: hidden;
+        transition: filter 0.3s;
+    }
+
+    .text-bg-warning:hover {
+        filter: brightness(0.8);
+    }
+
+    .text-bg-warning {
+        transition: transform 0.3s, width 0.3s, height 0.3s;
+    }
+
+    .text-bg-warning:hover .bg-body-tertiary {
+        transform: translateY(-10px);
+        width: 90%;
+        height: 550px;
+    }
+
+    .text-bg-warning .product-info {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        opacity: 0;
+        background-color: rgba(0, 0, 0, 0.7);
+        padding: 10px;
+        border-radius: 10px;
+        color: white;
+        width: 90%;
+        transition: opacity 0.3s;
+    }
+
+    .text-bg-warning:hover .product-info {
+        opacity: 1;
+        box-shadow: 2px 2px 20px rgba(0, 0, 1, 1);
+    }
+    body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+  }
+  
+  .container2 {
+    width: 100%;
+    height: 100%;
+    background-color:brown;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .image {
+    position: absolute;
+    width: 115%;
+    height: 115%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: transform 0s;
+  }
+
+  .image.resized {
+    width: 100%;
+    height: 100%;
+    transform: translate(-50%, -50%) scale(1.2);
+  }
+
     </style>
 
     <!-- Custom styles for this template -->
@@ -242,89 +454,23 @@ include "navbar.php" ?>
       
         <?php
 include 'connection.php';
-$sql = "SELECT * FROM produits ORDER BY RAND() LIMIT 6";
+$sql = "SELECT * FROM products ORDER BY RAND() LIMIT 6";
 $result = $conn->query($sql);
 ?>
 
-<style>
-    .product-container {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-between;
-    }
-
-    .product-item {
-        width: calc(33.33% - 20px);
-        margin-bottom: 20px;
-        padding: 10px;
-        box-sizing: border-box;
-        text-align: center;
-        position: relative; 
-    }
-
-    .product-image {
-        width: 100%;
-        height: 300px;
-        background-size: cover;
-        background-position: center;
-        border: 3px solid #ccc;
-        border-radius: 10px;
-        margin-bottom: 10px;
-        transition: filter 0.3s; 
-    }
-
-    .product-item:hover .product-image {
-        filter: brightness(0.8)
-    }
-
-    .product-info {
-        position: absolute; 
-        top: 50%; 
-        left: 50%; 
-        transform: translate(-50%, -50%); 
-        opacity: 0; 
-        background-color: rgba(0, 0, 0, 0.7); 
-        padding: 10px; 
-        border-radius: 10px; 
-        color: white; 
-        width: 90%; 
-        transition: opacity 0.3s; 
-    }
-
-    .product-item:hover .product-info {
-        opacity: 1; 
-        box-shadow: 2px 2px 20px rgba(0, 0, 1, 1); 
-    }
-</style>
-
-<div class="product-container">
-    <?php
-    while ($row = $result->fetch_assoc()) {
-        ?>
-        <div class="product-item">
-            <div class="product-image" style="background-image: url('<?php echo $row['image']; ?>');">
-                <div class="product-info">
-                    <h3><?php echo $row['name']; ?></h3>
-                    <p><?php echo $row['description']; ?></p>
-                    <p><?php echo $row['price']; ?>$</p>
-                </div>
-            </div>
-        </div>
-    <?php
-    }
-    ?>
-</div>
 
 
 
-
-  <div class="d-md-flex flex-md-equal w-100 my-md-3 ps-md-3">
-    <div class="bg-body-tertiary me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden">
-      <div class="my-3 p-3">
+<div class="d-md-flex flex-md-equal w-100 my-md-3 ps-md-3">
+    <div class="text-bg-dark me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden">
+      <div class="my-3 py-3">
         <h2 class="display-5">Pro Art Display</h2>
         <p class="lead">Tout l'esseciel pour les pro.</p>
       </div>
       <div class="bg-body-tertiary shadow-sm mx-auto" style="width: 80%; height: 500px; border-radius: 21px 21px 0 0; background-image: url('assets/imgs/rog.webp'); background-size: cover; background-position: center;"></div>
+      <div class="product-info">
+                    <h3>View more</h3>
+                </div>
     </div>
     <div class="text-bg-warning me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden">
       <div class="my-3 py-3">
@@ -332,27 +478,60 @@ $result = $conn->query($sql);
         <p class="lead">Titane.Si robuste.Si leger.Si pro</p>
       </div>
       <div class="bg-body-tertiary shadow-sm mx-auto" style="width: 80%; height: 500px; border-radius: 21px 21px 0 0; background-image: url('assets/imgs/iphone_15pro__3nx4u28gc026_large.jpg'); background-size: 300px; background-position: center;"></div>
+      <div class="product-info">
+                    <h3>View more</h3>
+                </div>
     </div>
-    
+  </div>
+<div class="d-md-flex flex-md-equal w-100 my-md-3 ps-md-3">
+<div class="bg-body-tertiary me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden">
+      <div class="my-3 p-3">
+        <h2 class="display-5">Lave-vaisselle en pose libre</h2>
+        <p class="lead">Surveillance simple et intuitive de l'état.</p>
+      </div>
+      <div class="bg-body-tertiary shadow-sm mx-auto" style="width: 80%; height: 500px; border-radius: 21px 21px 0 0; background-image: url('assets/imgs/lave\ vaisselle.jpg'); background-size: cover; background-position: center;"></div>
+      <div class="product-info">
+                    <h3>View more</h3>
+                </div>
+    </div>
+    <div class="text-bg-dark me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden">
+      <div class="my-3 py-3">
+        <h2 class="display-5">Buds S23 FE</h2>
+        <p class="lead">Entrez dans l'univers Galaxy S.</p>
+      </div>
+      <div class="bg-body-tertiary shadow-sm mx-auto" style="width: 80%; height: 500px; border-radius: 21px 21px 0 0; background-image: url('assets/imgs/Tab-S8-Ultra-14.jpg'); background-size: cover; background-position: center;"></div>
+      <div class="product-info">
+                    <h3>View more</h3>
+                </div>
+    </div>
   </div>
   <div class="d-md-flex flex-md-equal w-100 my-md-3 ps-md-3">
-  <div class="text-bg-danger me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden">
+    <div class="text-bg-dark me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden">
       <div class="my-3 py-3">
         <h2 class="display-5">L'Univers Gaming</h2>
-        <p class="lead">Titane.Si robuste.Si leger.Si pro</p>
+        <p class="lead">Notre Nouvelle Gamme.</p>
       </div>
       <div class="bg-body-tertiary shadow-sm mx-auto" style="width: 80%; height: 500px; border-radius: 21px 21px 0 0; background-image: url('assets/imgs/performanceImg.jpg'); background-size: cover; background-position: center;"></div>
+      <div class="product-info">
+                    <h3>View more</h3>
+                </div>
     </div>
-    <div class="bg-body-tertiary me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden">
-      <div class="my-3 p-3">
-        <h2 class="display-5">Talfza</h2>
-        <p class="lead">ekteb jomla behia.</p>
+    <div class="text-bg-warning me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden">
+      <div class="my-3 py-3">
+        <h2 class="display-5">talfza</h2>
+        <p class="lead">bla bla bla</p>
       </div>
       <div class="bg-body-tertiary shadow-sm mx-auto" style="width: 80%; height: 500px; border-radius: 21px 21px 0 0; background-image: url('assets/imgs/Sony_Gear_up_for_the_game.jpg'); background-size: cover; background-position: center;"></div>
+      <div class="product-info">
+                    <h3>View more</h3>
+                </div>
     </div>
-    
-    
   </div>
+  <div class="container2">
+  <img class="image" src="assets/imgs/samsung.webp"  alt="Sample Image">
+  </div>
+
+
 
 
 
@@ -438,7 +617,6 @@ $result = $conn->query($sql);
     </ul>
 </div>
 
-<!-- Your existing JavaScript -->
 <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha384-..." crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-..."></script>
@@ -483,8 +661,26 @@ document.addEventListener("DOMContentLoaded", function () {
         container.style.transform = "translateY(0)";
     });
 });
-</script>
+  const image = document.querySelector('.image');
+  const container = document.querySelector('.container');
+  let lastScrollTop = 1;
 
+  window.addEventListener('scroll', () => {
+    const scrollTop = window.scrollY;
+    const containerHeight = container.offsetHeight;
+    const imageHeight = image.offsetHeight;
+    const maxScale = 1.1;
 
+    if (scrollTop > lastScrollTop) {
+      const scale =  ((scrollTop / containerHeight) * (maxScale - 1))/5;
+      image.style.transform = `translate(-50%, -50%) scale(${scale})`;
+    } else {
+      const scale =  ((1 - scrollTop / containerHeight) * (maxScale - 1))/5;
+      image.style.transform = `translate(-50%, -50%) scale(${scale})`;
+    }
+
+    
+  });
+  </script>
 </body>
 </html>
