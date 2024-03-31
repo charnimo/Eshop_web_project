@@ -8,8 +8,8 @@
 }
 
 body{
-    background-color: #c9d6ff;
-    background: linear-gradient(to right, #e2e2e2, #c9d6ff);
+    background-image: url('../imgs/visax-NJ9o_qvQc8k-unsplash.jpg');
+    background: linear-gradient(to right, transparent,#333);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -47,7 +47,7 @@ body{
 }
 
 .container button{
-    background-color: #512da8;
+    background-color: #000; /* Changement de couleur */
     color: #fff;
     font-size: 12px;
     padding: 10px 45px;
@@ -84,6 +84,7 @@ body{
     border-radius: 8px;
     width: 100%;
     outline: none;
+    color: #000; /* Changement de couleur */
 }
 
 .form-container{
@@ -161,9 +162,9 @@ body{
 }
 
 .toggle{
-    background-color: #512da8;
+    background-color: #000; /* Changement de couleur */
     height: 100%;
-    background: linear-gradient(to right, #5c6bc0, #512da8);
+    background: linear-gradient(to right, #333, #000); /* Changement de couleur */
     color: #fff;
     position: relative;
     left: -100%;

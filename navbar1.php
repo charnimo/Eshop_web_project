@@ -89,10 +89,10 @@
                     <a class="nav-link" href="/contact.html">Contact</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Services</a>
+                    <a class="nav-link" href="/login.php">Login</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Contact</a>
+                    <a class="nav-link" href="/Checkout.php">Cart</a>
                 </li>
             </ul>
         </div>
@@ -130,7 +130,7 @@
         <span class="visually-hidden">Next</span>
     </a>
 </div>
-<!--- ignore the code below-->
+
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
