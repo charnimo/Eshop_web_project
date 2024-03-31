@@ -1,5 +1,5 @@
 <?php session_start();
-include "navbar.php" ?>
+include "navbar1.php" ?>
 <!doctype html>
 <html lang="en" data-bs-theme="auto">
 <head>
@@ -424,34 +424,6 @@ include "navbar.php" ?>
 
 
 
-<div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <a href="shop.html"> <img src="assets/imgs/msi.jpg" class="d-block w-100" alt="Promo Product 1"><a>
-                </div>
-                <div class="carousel-item">
-                    <a href="shop.html"> <img src="assets/imgs/ps5.png" class="d-block w-100" alt="Promo Product 2"><a>
-                </div> 
-                <div class="carousel-item">
-                    <a href="shop.html"> <img src="assets/imgs/victus.png" class="d-block w-100" alt="Promo Product 3"><a>
-                </div>  
-                <div class="carousel-item">
-                    <a href="shop.html"> <img src="assets/imgs/NEO-QLED-8k.jpg" class="d-block w-100" alt="Promo Product 4"><a>
-                </div>
-                <div class="carousel-item">
-                    <a href="shop.html"> <img src="assets/imgs/cgw4pbfm1adr7cf9-0_0_desktop_0_1X.webp" class="d-block w-100" alt="Promo Product 4"><a>
-                </div>
-            </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-            </button>
-        </div>
-      
         <?php
 include 'connection.php';
 $sql = "SELECT * FROM products ORDER BY RAND() LIMIT 6";
