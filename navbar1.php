@@ -68,32 +68,15 @@
         }
         .navbar-light .navbar-nav .nav-link:focus,
         .navbar-light .navbar-nav .nav-link:hover {
-            color: #fff;
+            color:bisque;
         }
-        /* ignore the code below */
-        .link-area {
-            position: fixed;
-            bottom: 20px;
-            left: 20px;
-            padding: 15px;
-            border-radius: 40px;
-            background: tomato;
-        }
-        .link-area a {
-            text-decoration: none;
-            color: #fff;
-            font-size: 25px;
-        }
+       
     </style>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light fixed-top">
     <div class="container">
         <a class="navbar-brand" href="#">Mouri</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item active">
