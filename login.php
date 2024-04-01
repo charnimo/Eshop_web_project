@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" href="assets/css/style1.css">
-    <title>Modern Login Page | AsmrProg</title>
+    <title>login / sign in</title>
 </head>
 
 <body>
@@ -55,7 +53,7 @@
                 </div>
                 <div class="toggle-panel toggle-right">
                     <h1>Hello, Friend!</h1>
-                    <p>Register with your personal details to use all of site features</p>
+                    <p>Register with your personal details to use all of the website features</p>
                     <button class="hidden" id="register">Sign Up</button>
                 </div>
             </div>

@@ -5,32 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
     <style>
-        .carousel-item {
-            height: 100vh;
-            min-height: 300px;
-            background: no-repeat center center scroll;
-            -webkit-background-size: cover;
-            -moz-background-size: cover;
-            -o-background-size: cover;
-            background-size: cover;
-        }
-        .carousel-caption {
-            bottom: 270px;
-        }
-        .carousel-caption h5 {
-            color: bisque;
-            font-size: 45px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-top: 25px;
-        }
-        .carousel-caption p {
-            color: bisque;
-            width: 75%;
-            margin: auto;
-            font-size: 18px;
-            line-height: 1.9;
-        }
+        
 
         .navbar {
     position: fixed; 
@@ -79,12 +54,15 @@
         .navbar-light .navbar-nav .nav-link:hover {
             color:bisque;
         }
+        .navbar-light  .navbar-brand:hover {
+            color:bisque;
+        }
 
         #user-status {
             color: white;
         }
        .navbar:hover {
-            transform:none;
+            transform:inherit;
         }
         
         
@@ -112,24 +90,27 @@
                 <?php
             if (isset($_SESSION['admin']) || isset($_SESSION['user'])) {
                 echo '<li class="nav-item">
-                <a class="nav-link" href="/Eshop_web_project/logout.php">Logout</a>
-            </li>';
+                <a class="nav-link" href="/Eshop_web_project/logout.php">Logout</a> </li>';
             } else {
                 echo '<li class="nav-item">
-                <a class="nav-link" href="/Eshop_web_project/login.php">Login</a>
+                <a class="nav-link" href="login.php">Login</a>
                 </li>';
             }
             ?>
-            <div id="user-status" style="margin-left: 100px;">  
+                <div id="user-status" style="margin-left: 100px;">
                 <?php
                 if (isset($_SESSION['admin'])) {
-                    echo "Logged in as:  Admin";
+                    echo '<li class="nav-item"><a class="nav-link">Logged in as:  Admin </a></li>';
+                    //echo "Logged in as:  Admin";
                 } else if (isset($_SESSION['user'])) {
-                    echo "Logged in as:  " . $_SESSION['user'];
+                    echo '<li class="nav-item"><a class="nav-link">Logged in as: '.$_SESSION['user']."</a></li>";
+                   //echo "Logged in as:  " . $_SESSION['user'];                        
                 } else {
-                    echo "Not logged in";
-                }
+                  echo '<li class="nav-item"><a class="nav-link">Not logged in</a></li>';
+                    //echo "Not logged in";
+                    }
                 ?>
+                </div>
             </ul>
         </div>
     </div>
