@@ -322,9 +322,15 @@ include "navbar.php";
                                     <section class="panel">
                                         <div class="pro-img-box">
                                             <img src="<?php echo $row['image']; ?>" class="card-img-top product-image" alt="<?php echo $row['name']; ?>" data-bs-toggle="modal" data-bs-target="#descriptionModal-<?php echo $row['id']; ?>">
-                                            <a href="#" class="adtocart">
-                                                <i class="fa fa-shopping-cart"></i>
-                                            </a>
+                                            <form method="POST" action="addtocart.php">
+                                                <input type="hidden" name="product_name" value="<?php echo $row['name']; ?>">
+                                                <input type="hidden" name="product_price" value="<?php echo $row['price']; ?>">
+                                                <input type="hidden" name="product_image" value="<?php echo $row['image']; ?>">
+                                                <button name="addtocart" class="adtocart">
+                                                    <i class="fa fa-shopping-cart"></i>
+                                                </button>
+                                            </form>
+
                                         </div>
 
                                         <div class="panel-body text-center">
