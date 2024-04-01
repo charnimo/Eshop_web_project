@@ -1,9 +1,6 @@
 <?php
 
-//apparament ywarrik l errors idk t7b na7i na7i
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
+
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["signup"])) {
     include 'connection.php';
