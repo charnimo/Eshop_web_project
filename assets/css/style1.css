@@ -16,9 +16,9 @@ body{
     flex-direction: column;
     height: 100vh;
 }
-
+ 
 .container{
-    background-color: #fff;
+    background-color: #9c8e8e;
     border-radius: 30px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
     position: relative;
@@ -47,7 +47,7 @@ body{
 }
 
 .container button{
-    background-color: #000; /* Changement de couleur */
+    background-color: #d67a0c; /* Changement de couleur */
     color: #fff;
     font-size: 12px;
     padding: 10px 45px;
@@ -66,7 +66,7 @@ body{
 }
 
 .container form{
-    background-color: #fff;
+    background-color: #9c8e8e;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -84,7 +84,7 @@ body{
     border-radius: 8px;
     width: 100%;
     outline: none;
-    color: #000; /* Changement de couleur */
+    color: #1c1e25; /* Changement de couleur */
 }
 
 .form-container{
@@ -162,9 +162,9 @@ body{
 }
 
 .toggle{
-    background-color: #000; /* Changement de couleur */
+    background-color: #1c1e25; /* Changement de couleur */
     height: 100%;
-    background: linear-gradient(to right, #333, #000); /* Changement de couleur */
+    background: linear-gradient(to right, #333, #1c1e25); /* Changement de couleur */
     color: #fff;
     position: relative;
     left: -100%;
