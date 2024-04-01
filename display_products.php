@@ -106,22 +106,22 @@
     }
 
     .category-btn {
-        background-color: #4CAF50; /* Green background */
-        color: white; /* White text */
+        background-color: #4CAF50; 
+        color: white;
         border: solid 2px #000;
         border-radius: 10px;
-        padding: 15px 32px; /* Add some padding */
-        text-align: center; /* Center the text */
-        text-decoration: none; /* Remove underline */
+        padding: 15px 32px; 
+        text-align: center; 
+        text-decoration: none; 
         display: inline-block;
         font-size: 16px;
         margin: 4px 2px;
-        cursor: pointer; /* Change cursor to pointer when hovering over the button */
-        transition-duration: 0.4s; /* Transition effect */
+        cursor: pointer; 
+        transition-duration: 0.4s;
     }
 
     .category-btn:hover {
-        background-color: #45a049; /* Add a darker green when hovering */
+        background-color: #45a049; 
         border: solid 2px #000;
         border-radius: 10px;
         transform: scale(1.1);
@@ -139,7 +139,7 @@
         transform : scale(1.1);
     }
 
-    /* Adjustments for sidebar on the left */
+ 
     @media (min-width: 992px) {
         .sidebar {
             position: fixed;

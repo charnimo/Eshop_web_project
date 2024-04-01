@@ -33,12 +33,12 @@
         }
 
         .navbar {
-    position: fixed; /* Set navbar position to fixed */
-    top: 0; /* Position navbar at the top of the viewport */
-    width: 100%; /* Make navbar full width */
-    z-index: 1000; /* Ensure navbar is above other content */
-    background-color: black; /* Change background color to black */
-    /* Other styles remain unchanged */
+    position: fixed; 
+    top: 0; 
+    width: 100%; 
+    z-index: 1000;
+    background-color: black; 
+    
 }
         .navbar-light .navbar-brand {
             color: #fff;
