@@ -114,15 +114,16 @@ include "navbar.php";
         }
 
         .pro-title {
-            color: #5A5A5A;
+            color: #000000;
             display: inline-block;
+            padding-top: 20px;
             margin-top: 20px;
             font-size: 16px;
         }
 
         .product-list .price {
-            color: #fc5959;
-            font-size: 15px;
+            color: #573C63;
+            font-size: 30px;
         }
 
         .pro-img-details {
@@ -237,10 +238,29 @@ include "navbar.php";
             border: none;
             background: transparent;
         }
+
+        .card-img-top {
+            transition:  0.1s;
+            border: 1px solid #333;
+            border-radius: 10px;
+        }
+        .card-img-top:hover {
+            transform: scale(1.07);
+        }
+
+        .product-list {
+            background-color: #7B7472;
+        }
+        
+        li {
+            display: block;
+        }
+
+
     </style>
 </head>
 
-<body>
+<body style="background-color:#978C8A">
 
     <div class="container bootdey">
         <div class="row">
@@ -286,18 +306,7 @@ include "navbar.php";
                 </section>
             </div>
             <div class="col-md-9">
-                <section class="panel">
-                    <div class="panel-body">
-                        <div class="pull-right">
-                            <ul class="pagination pagination-sm pro-page-list">
-                                <li><a href="#">1</a></li>
-                                <li><a href="#">2</a></li>
-                                <li><a href="#">3</a></li>
-                                <li><a href="#">»</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </section>
+
                 <div class="product-container">
                     <div class="row product-list">
                         <?php
@@ -320,9 +329,9 @@ include "navbar.php";
 
                                         <div class="panel-body text-center">
                                             <h4>
-                                                <a href="#" class="pro-title">
+                                                <p class="pro-title">
                                                     <?php echo $row['name']; ?>
-                                                </a>
+                                                </p>
                                             </h4>
                                             <p class="price">$<?php echo $row['price']; ?></p>
                                         </div>

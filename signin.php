@@ -19,7 +19,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["signin"])) {
             unset($_SESSION['user']);
             session_start();
             $_SESSION['admin'] = 1;
-            header("Location: products.php");
+            header("Location: homepage.php");
         } else {
             //clear all old sessions:
             session_destroy();

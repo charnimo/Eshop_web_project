@@ -1,12 +1,24 @@
 
 <?php
     //admin bark yod5el lel products.php
+
     session_start();
-    if (!isset($_SESSION['admin']) || $_SESSION['admin'] != 1) 
+    if (isset($_SESSION['admin'])) 
     {
-        echo "forbidden";
-        exit;
+        //do nothing
+
     }
+    else if(isset($_SESSION['user'])  )
+    {
+        header("Location: userproduct.php");
+        exit();
+    }
+    else
+    {
+        header("Location: forbidden.php");
+        exit();
+    }
+    include 'navbar1.php';
 ?>
 
 <!DOCTYPE html>
@@ -14,7 +26,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>AdminProducts</title>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" />
 
@@ -26,12 +38,12 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-..."></script>
 </head>
-<body>
+<body style="padding-top: 40px;">
     <div class="container bg-light text-light p-3 rounded my-4">
         <div class="d-flex align-items-center justify-content-between">
         
             <h2>
-                <a href="index.html" class="text-black  text-decoration-none">BHIMA Store</a>
+                
             </h2>
             <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addproduct"><i class="fas fa-plus"></i></button>
         </div>

@@ -42,11 +42,11 @@
           <li class="nav-server-side-login" style="display: flex; align-items: center; justify-content: space-between;">
             <?php
             if (isset($_SESSION['admin']) || isset($_SESSION['user'])) {
-                echo '<a href="logout.php" class="nav-link text-light text-decoration-none btn btn-primary">
+                echo '<li class="nav-item mb-2"><a href="logout.php" class="nav-link"></li>
                 <i class="fas fa-sign-out-alt"></i> Logout
               </a>';
             } else {
-                echo '<a href="login.php" class="nav-link text-light text-decoration-none btn btn-primary">
+                echo '<li class="nav-item mb-2"><a href="login.php" class="nav-link"></li>
                 <i class="fas fa-user"></i> Login
               </a>';
             }

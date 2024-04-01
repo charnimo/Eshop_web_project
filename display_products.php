@@ -106,21 +106,37 @@
     }
 
     .category-btn {
-        background-color: transparent;
-        border: none;
-        color: #4a4a4a;
-        padding: 0;
-        font-size: 14px;
-        transition: color .3s;
+        background-color: #4CAF50; /* Green background */
+        color: white; /* White text */
+        border: solid 2px #000;
+        border-radius: 10px;
+        padding: 15px 32px; /* Add some padding */
+        text-align: center; /* Center the text */
+        text-decoration: none; /* Remove underline */
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer; /* Change cursor to pointer when hovering over the button */
+        transition-duration: 0.4s; /* Transition effect */
     }
 
     .category-btn:hover {
-        color: #007bff;
+        background-color: #45a049; /* Add a darker green when hovering */
+        border: solid 2px #000;
+        border-radius: 10px;
+        transform: scale(1.1);
     }
+
 
     .btn-sort {
         width: 100%;
         margin-bottom: 10px;
+        background-color: #007bff;
+    }
+
+    .btn-sort:hover {
+        background-color: #0056b3;
+        transform : scale(1.1);
     }
 
     /* Adjustments for sidebar on the left */

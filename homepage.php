@@ -403,6 +403,38 @@ include "navbar1.php" ?>
     <link href="product.css" rel="stylesheet">
 </head>
 <body>
+<div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+    <ol class="carousel-indicators">
+        <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"></li>
+        <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"></li>
+        <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"></li>
+    </ol>
+    <div class="carousel-inner">
+        <div class="carousel-item active" style="background-image: url('https://ispace.kz/blog/wp-content/uploads/2023/09/7-1024x480.png')">
+            <div class="carousel-caption d-none d-md-block">
+                <h5>IPhone 15 Pro Max </h5>
+                <p>highest quality materials.</p>
+            </div>
+        </div>
+        <div class="carousel-item" style="background-image: url('assets/imgs/u0ovnahd2jkdrql7-0_0_desktop_0_1X.webp')">
+            <div class="carousel-caption d-none d-md-block">
+            </div>
+        </div>
+        <div class="carousel-item" style="background-image: url('assets/imgs/cgw4pbfm1adr7cf9-0_0_desktop_0_1X.webp')">
+            <div class="carousel-caption d-none d-md-block">
+                <h5>Nouvelle Gamme pc Tuff</h5>
+            </div>
+        </div>
+    </div>
+    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </a>
+</div>
 <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
     <!-- Your SVG symbols -->
     <symbol id="check2" viewBox="0 0 16 16">
@@ -421,16 +453,6 @@ include "navbar1.php" ?>
 </svg>
 
   
-
-
-
-        <?php
-include 'connection.php';
-$sql = "SELECT * FROM products ORDER BY RAND() LIMIT 6";
-$result = $conn->query($sql);
-?>
-
-
 
 
 <div class="d-md-flex flex-md-equal w-100 my-md-3 ps-md-3">
@@ -509,46 +531,26 @@ $result = $conn->query($sql);
 
 <footer class="container py-5">
   <div class="row">
-    <div class="col-12 col-md">
-      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="d-block mb-2" role="img" viewBox="0 0 24 24"><title>Product</title><circle cx="12" cy="12" r="10"/><path d="M14.31 8l5.74 9.94M9.69 8h11.48M7.38 12l5.74-9.94M9.69 16L3.95 6.06M14.31 16H2.83m13.79-4l-5.74 9.94"/></svg>
-      <small class="d-block mb-3 text-body-secondary">&copy; 2017–2024</small>
-    </div>
+   
     <div class="col-6 col-md">
       <h5>Features</h5>
       <ul class="list-unstyled text-small">
-        <li><a class="link-secondary text-decoration-none" href="#">Cool stuff</a></li>
-        <li><a class="link-secondary text-decoration-none" href="#">Random feature</a></li>
-        <li><a class="link-secondary text-decoration-none" href="#">Team feature</a></li>
-        <li><a class="link-secondary text-decoration-none" href="#">Stuff for developers</a></li>
-        <li><a class="link-secondary text-decoration-none" href="#">Another one</a></li>
-        <li><a class="link-secondary text-decoration-none" href="#">Last time</a></li>
+        <li><a class="link-secondary text-decoration-none" href="#">Web Project</a></li>
+
       </ul>
     </div>
     <div class="col-6 col-md">
       <h5>Resources</h5>
       <ul class="list-unstyled text-small">
-        <li><a class="link-secondary text-decoration-none" href="#">Resource name</a></li>
-        <li><a class="link-secondary text-decoration-none" href="#">Resource</a></li>
-        <li><a class="link-secondary text-decoration-none" href="#">Another resource</a></li>
-        <li><a class="link-secondary text-decoration-none" href="#">Final resource</a></li>
+        <li><a class="link-secondary text-decoration-none" href="#">GG</a></li>
       </ul>
     </div>
-    <div class="col-6 col-md">
-      <h5>Resources</h5>
-      <ul class="list-unstyled text-small">
-        <li><a class="link-secondary text-decoration-none" href="#">Business</a></li>
-        <li><a class="link-secondary text-decoration-none" href="#">Education</a></li>
-        <li><a class="link-secondary text-decoration-none" href="#">Government</a></li>
-        <li><a class="link-secondary text-decoration-none" href="#">Gaming</a></li>
-      </ul>
-    </div>
+
     <div class="col-6 col-md">
       <h5>About</h5>
       <ul class="list-unstyled text-small">
         <li><a class="link-secondary text-decoration-none" href="#">Team</a></li>
-        <li><a class="link-secondary text-decoration-none" href="#">Locations</a></li>
-        <li><a class="link-secondary text-decoration-none" href="#">Privacy</a></li>
-        <li><a class="link-secondary text-decoration-none" href="#">Terms</a></li>
+
       </ul>
     </div>
   </div>

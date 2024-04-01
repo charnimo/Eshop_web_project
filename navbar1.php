@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
     <style>
         .carousel-item {
             height: 100vh;
@@ -32,6 +31,15 @@
             font-size: 18px;
             line-height: 1.9;
         }
+
+        .navbar {
+    position: fixed; /* Set navbar position to fixed */
+    top: 0; /* Position navbar at the top of the viewport */
+    width: 100%; /* Make navbar full width */
+    z-index: 1000; /* Ensure navbar is above other content */
+    background-color: black; /* Change background color to black */
+    /* Other styles remain unchanged */
+}
         .navbar-light .navbar-brand {
             color: #fff;
             font-size: 25px;
@@ -47,12 +55,14 @@
         }
         .navbar-light .navbar-nav .nav-link {
             color: #fff;
+            transition:  0.3s;
         }
         .navbar-toggler {
             background: #fff;
         }
         .navbar-nav {
             text-align: center;
+            margin-top: 5px;
         }
         .nav-link {
             padding: .2rem 1rem;
@@ -64,72 +74,67 @@
         .navbar-toggler {
             padding: 1px 5px;
             font-size: 18px;
-            line-height: 0.3;
         }
         .navbar-light .navbar-nav .nav-link:focus,
         .navbar-light .navbar-nav .nav-link:hover {
             color:bisque;
         }
-       
+
+        #user-status {
+            color: white;
+        }
+       .navbar:hover {
+            transform:none;
+        }
+        
+        
+        
     </style>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light fixed-top">
     <div class="container">
-        <a class="navbar-brand" href="#">Mouri</a>
+        <a class="navbar-brand" href="#">SHOP</a>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="/homepage.php">Home</a>
+                    <a class="nav-link" href="/Eshop_web_project/homepage.php">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/products.php">Products</a>
+                    <a class="nav-link" href="/Eshop_web_project/products.php">Products</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/contact.html">Contact</a>
+                    <a class="nav-link" href="/Eshop_web_project/contact.php">Contact</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/login.php">Login</a>
+                    <a class="nav-link" href="/Eshop_web_project/Checkout.php">Cart</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/Checkout.php">Cart</a>
-                </li>
+                <?php
+            if (isset($_SESSION['admin']) || isset($_SESSION['user'])) {
+                echo '<li class="nav-item">
+                <a class="nav-link" href="/Eshop_web_project/logout.php">Logout</a>
+            </li>';
+            } else {
+                echo '<li class="nav-item">
+                <a class="nav-link" href="/Eshop_web_project/login.php">Login</a>
+                </li>';
+            }
+            ?>
+            <div id="user-status" style="margin-left: 100px;">  
+                <?php
+                if (isset($_SESSION['admin'])) {
+                    echo "Logged in as:  Admin";
+                } else if (isset($_SESSION['user'])) {
+                    echo "Logged in as:  " . $_SESSION['user'];
+                } else {
+                    echo "Not logged in";
+                }
+                ?>
             </ul>
         </div>
     </div>
 </nav>
-<div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
-    <ol class="carousel-indicators">
-        <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"></li>
-        <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"></li>
-        <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"></li>
-    </ol>
-    <div class="carousel-inner">
-        <div class="carousel-item active" style="background-image: url('https://ispace.kz/blog/wp-content/uploads/2023/09/7-1024x480.png')">
-            <div class="carousel-caption d-none d-md-block">
-                <h5>IPhone 15 Pro Max </h5>
-                <p>highest quality materials.</p>
-            </div>
-        </div>
-        <div class="carousel-item" style="background-image: url('assets/imgs/u0ovnahd2jkdrql7-0_0_desktop_0_1X.webp')">
-            <div class="carousel-caption d-none d-md-block">
-            </div>
-        </div>
-        <div class="carousel-item" style="background-image: url('assets/imgs/cgw4pbfm1adr7cf9-0_0_desktop_0_1X.webp')">
-            <div class="carousel-caption d-none d-md-block">
-                <h5>Nouvelle Gamme pc Tuff</h5>
-            </div>
-        </div>
-    </div>
-    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Previous</span>
-    </a>
-    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-bs-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Next</span>
-    </a>
-</div>
+
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
