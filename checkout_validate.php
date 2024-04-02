@@ -1,69 +1,54 @@
 <?php
+session_start();
 require('fpdf/fpdf.php');
 
-libxml_use_internal_errors(true); // to suppress warnings
-error_reporting(E_ERROR | E_PARSE);
-// PDF setup
-
-$pdf=new FPDF();
+$pdf = new FPDF();
 $pdf->AddPage();
 $pdf->SetFont('Arial', 'B', 18);
-if ($_SERVER["REQUEST_METHOD"] == "POST" ) {
+
+$pdf->SetFillColor(230, 230, 230);
+$pdf->SetTextColor(0, 0, 0);
+
+$pdf->Cell(0, 10, 'Order Summary', 'B', 1, 'C', true);
+$pdf->Ln(10);
+
+$pdf->SetFont('Arial', 'B', 14);
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $firstname = $_POST['firstName'];
     $lastname = $_POST['lastName'];
-    $username= $_POST['username'];  
     $email = $_POST['email'];
-    $address= $_POST['address'];
-    $country= $_POST['country'];
-    $cc_name= $_POST['cc-name'];
+    $address = $_POST['address'];
+    $cc_name = $_POST['cc-name'];
+
+    $pdf->Cell(0, 10, "Customer Information", 0, 1, 'C');
+    $pdf->Ln(2);
+    $pdf->SetFont('Arial', 'B', 12);
+    $pdf->Cell(0, 10, "Name: $firstname $lastname", 0, 1);
+    $pdf->Cell(0, 10, "Email: $email", 0, 1);
+    $pdf->Cell(0, 10, "Address: $address", 0, 1);
+    $pdf->Cell(0, 10, "Account Number: $cc_name", 0, 1);
+    $pdf->Ln(10);
 
 
-    $pdf->MultiCell(0,10,"name : $lastname $firstname");
-    $pdf->MultiCell(0,10,"email : $email");
-    $pdf->MultiCell(0,10,"address : $address");
-    $pdf->MultiCell(0,10,"account number : $cc_name");
-    //echo"azeazeaze\n";
-    //echo$firstname;
-    //echo "\n";
-    //echo$lastname;
-    //echo "<br>";
-
-    $dochtml = new domDocument();
-    $html_content = file_get_contents('Checkout.php');
-    $dochtml->loadHTML($html_content);
-    $l = $dochtml->getElementById('cart_elements');
-    $elements= $l->getElementsByTagName('li');
-    foreach ($elements as $li){
-        $pdf->SetFont('Arial', 'B', 18);
-
-        $name=$li->getElementsByTagName('div');
-        $name=$name->item(0)->nodeValue;
-        $pdf->MultiCell(0,5,"$name");
-        
-        //echo $name;
-        //echo "   :   ";
-        $name=$li->getElementsByTagName('span');
-        $name=$name->item(0)->nodeValue;
-        $pdf->MultiCell(0,5,"$name",0,'C');
-
-        //echo $name;
-        //echo "<br>";
-        $name=$li->getElementsByTagName('strong');
-        $name=$name->item(0)->nodeValue;
-        $pdf->MultiCell(0,5,"$name",0,"C");
-
-        //echo $name;
-        //echo "<br>";
-
-
+    $pdf->SetFont('Arial', 'B', 14);
+    $pdf->Cell(0, 10, "Cart Items", 0, 1, 'C');
+    $pdf->Ln(2);
+    $pdf->SetFont('Arial', 'B', 12);
+    foreach ($_SESSION['cart'] as $productName => $product) {
+        $pdf->Cell(120, 10, $productName, 1, 0);
+        $pdf->Cell(35, 10, "{$product['quantity']} x $ {$product['price']}", 1, 0, 'C');
+        $pdf->Cell(35, 10, "Total: $ " . number_format($product['quantity'] * $product['price'], 2), 1, 1, 'R');
     }
+
+    $totalPrice = array_sum(array_map(function($product) {
+        return $product['quantity'] * $product['price'];
+    }, $_SESSION['cart']));
+    $pdf->SetFont('Arial', 'B', 12);
+    $pdf->Cell(155, 10, "Total Price", 1, 0, 'R');
+    $pdf->Cell(35, 10, "$ " . number_format($totalPrice, 2), 1, 1, 'R');
 }
 
-
-
-#$pdf->Cell(60,20,"$name"); 
-
 $pdf->Output();
-
 ?>
