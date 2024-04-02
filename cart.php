@@ -92,8 +92,9 @@ include "navbar1.php";
                     <div class="col text-right">&euro; <?php echo array_sum(array_map(function($item) { return $item['price'] * $item['quantity']; }, $_SESSION["cart"])) + 5.00; ?></div>
                 </div>
             <?php endif; ?>
-            
-            <button class="btn">CHECKOUT</button>
+            <form>
+         <a href="checkout.php" class="btn btn-success">Checkout</a>
+        </form>
         </div>
     </div>
 </div>

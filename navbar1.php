@@ -85,7 +85,7 @@
                     <a class="nav-link" href="contact.php">Contact</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="Checkout.php">Cart</a>
+                    <a class="nav-link" href="cart.php">Cart</a>
                 </li>
                 <?php
             if (isset($_SESSION['admin']) || isset($_SESSION['user'])) {

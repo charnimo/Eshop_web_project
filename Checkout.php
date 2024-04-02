@@ -1,4 +1,7 @@
-
+<?php 
+session_start();
+include 'navbar1.php';
+?>
 <!doctype html>
 <html lang="en" data-bs-theme="auto">
 <head>
@@ -7,7 +10,7 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.122.0">
-    <title>Product example · Bootstrap v5.3</title>
+    <title>Checkout</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/product/">
 
@@ -101,7 +104,7 @@
     <!-- Custom styles for this template -->
     <link href="checkout.css" rel="stylesheet">
   </head>
-  <body class="bg-body-tertiary">
+  <body style="padding-top:35px" class="bg-body-tertiary">
     <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
       <symbol id="check2" viewBox="0 0 16 16">
         <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
@@ -158,7 +161,6 @@
   <main>
     <div class="py-5 text-center">
       <h2>Checkout form</h2>
-      <p class="lead">Below is an example form built entirely with Bootstrap’s form controls. Each required form group has a validation state that can be triggered by attempting to submit the form without completing it.</p>
     </div>
 
     <div class="row g-5">

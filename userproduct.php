@@ -1,6 +1,10 @@
 <?php
 session_start();
 include "navbar.php";
+
+if(isset($_SESSION['admin'])) {
+   header("Location: products.php"); 
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
