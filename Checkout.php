@@ -1,6 +1,9 @@
 <?php 
 session_start();
 include 'navbar1.php';
+if(!isset($_SESSION['cart']) || empty($_SESSION['cart'])) {
+    header("Location: cart.php");
+}
 ?>
 <!doctype html>
 <html lang="en" data-bs-theme="auto">

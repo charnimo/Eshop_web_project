@@ -1,5 +1,8 @@
 <?php
 session_start();
+if((!isset($_SESSION['user'])) && (!isset($_SESSION['admin'])) ){
+    header("Location: forbidden.php");
+}   
 
 include "navbar1.php";
 ?>
