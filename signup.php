@@ -10,14 +10,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["signup"])) {
     $password = $_POST['password'];
 
     //check if user exists
-    $sql = "SELECT * FROM users WHERE name = '$username' OR email = '$email'";
+    $sql = "SELECT * FROM user WHERE username = '$username' OR email = '$email'";
     $result = mysqli_query($conn, $sql);
     if (mysqli_num_rows($result) > 0) {
         echo "User already exists";
         exit;
     }
     else{
-    $sql = "INSERT INTO users (name, email, password) VALUES ('$username', '$email', '$password')";
+    $sql = "INSERT INTO user (username, email, password) VALUES ('$username', '$email', '$password')";
 
     if (mysqli_query($conn, $sql)) {
         header("Location: login.php");
