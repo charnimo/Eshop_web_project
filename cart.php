@@ -1,5 +1,8 @@
 <?php
 session_start();
+if((!isset($_SESSION['user'])) && (!isset($_SESSION['admin'])) ){
+    header("Location: forbidden.php");
+}   
 
 include "navbar1.php";
 ?>
@@ -47,7 +50,7 @@ include "navbar1.php";
                         <div class="col">
                             <a href="#">-</a><span><?php echo $product['quantity']; ?></span><a href="#">+</a>
                         </div>
-                        <div class="col">&euro; <?php echo $product['price'] * $product['quantity']; ?> <span class="close">&#10005;</span></div>
+                        <div class="col">&dollar; <?php echo $product['price'] * $product['quantity']; ?> <span class="close">&#10005;</span></div>
                     </div>
                 </div>
                 <?php endforeach; ?>
@@ -67,33 +70,34 @@ include "navbar1.php";
             <?php if(isset($_SESSION["cart"]) && is_array($_SESSION["cart"])): ?>
                 <div class="row">
                     <div class="col" style="padding-left:0;"><?php echo array_sum(array_column($_SESSION["cart"], 'quantity')); ?> items</div>
-                    <div class="col text-right">&euro; <?php echo array_sum(array_map(function($item) { return $item['price'] * $item['quantity']; }, $_SESSION["cart"])); ?></div>
+                    <div class="col text-right">&dollar; <?php echo array_sum(array_map(function($item) { return $item['price'] * $item['quantity']; }, $_SESSION["cart"])); ?></div>
                 </div>
                 <div class="row">
                     <div class="col" style="padding-left:0;">Delivery</div>
-                    <div class="col text-right">&euro; 5.00</div>
+                    <div class="col text-right">&dollar; 5.00</div>
                 </div>
             <?php else: ?>
                 <div class="row">
                     <div class="col" style="padding-left:0;">0 items</div>
-                    <div class="col text-right">&euro; 0.00</div>
+                    <div class="col text-right">&dollar; 0.00</div>
                 </div>
             <?php endif; ?>
             
             <form>
                 <p>SHIPPING</p>
-                <select><option class="text-muted">Standard-Delivery- &euro;5.00</option></select>
+                <select><option class="text-muted">Standard-Delivery- &dollar;5.00</option></select>
                 <p>PROMO CODE</p>
                 <input id="code" placeholder="Enter your code">
             </form>
             <?php if(isset($_SESSION["cart"]) && is_array($_SESSION["cart"])): ?>
                 <div class="row" style="border-top: 1px solid rgba(0,0,0,.1); padding: 2vh 0;">
                     <div class="col">TOTAL PRICE</div>
-                    <div class="col text-right">&euro; <?php echo array_sum(array_map(function($item) { return $item['price'] * $item['quantity']; }, $_SESSION["cart"])) + 5.00; ?></div>
+                    <div class="col text-right">&dollar; <?php echo array_sum(array_map(function($item) { return $item['price'] * $item['quantity']; }, $_SESSION["cart"])) + 5.00; ?></div>
                 </div>
             <?php endif; ?>
-            
-            <button class="btn">CHECKOUT</button>
+            <form method="POST" action="Checkout.php">
+         <button name="checkout" class="btn btn-success">Checkout</button>
+        </form>
         </div>
     </div>
 </div>

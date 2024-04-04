@@ -102,10 +102,10 @@
 				          </div>
 				        	<div class="dbox w-100 d-flex align-items-center">
 				        		<div class="icon d-flex align-items-center justify-content-center">
-				        			<span class="fa fa-globe"></span>
+				        			<span class="fa fa-arrow-left"></span>
 				        		</div>
 				        		<div class="text pl-3">
-					            <p> <a href="/homepage.php">Go Back</a></p>
+					            <p> <a href="/Eshop_web_project/homepage.php">Go Back</a></p>
 					          </div>
 				          </div>
 			          </div>

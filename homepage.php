@@ -277,7 +277,6 @@ include "navbar1.php" ?>
         opacity: 1;
         box-shadow: 2px 2px 20px rgba(0, 0, 1, 1);
     }
-    tnyuntn
     .bg-body-tertiary {
         position: relative;
         overflow: hidden;
@@ -396,6 +395,32 @@ include "navbar1.php" ?>
     height: 100%;
     transform: translate(-50%, -50%) scale(1.2);
   }
+  .carousel-item {
+            height: 100vh;
+            min-height: 300px;
+            background: no-repeat center center scroll;
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            background-size: cover;
+        }
+        .carousel-caption {
+            bottom: 270px;
+        }
+        .carousel-caption h5 {
+            color: bisque;
+            font-size: 45px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-top: 25px;
+        }
+        .carousel-caption p {
+            color: bisque;
+            width: 75%;
+            margin: auto;
+            font-size: 18px;
+            line-height: 1.9;
+        }
 
     </style>
 
@@ -468,7 +493,7 @@ include "navbar1.php" ?>
     </div>
     <div class="text-bg-warning me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden">
       <div class="my-3 py-3">
-        <h2 class="display-5">I Phone 15 Pro Max</h2>
+        <h2 class="display-5">IPhone 15 Pro Max</h2>
         <p class="lead">Titane.Si robuste.Si leger.Si pro</p>
       </div>
       <div class="bg-body-tertiary shadow-sm mx-auto" style="width: 80%; height: 500px; border-radius: 21px 21px 0 0; background-image: url('assets/imgs/iphone_15pro__3nx4u28gc026_large.jpg'); background-size: 300px; background-position: center;"></div>
@@ -479,7 +504,7 @@ include "navbar1.php" ?>
   </div>
 <div class="d-md-flex flex-md-equal w-100 my-md-3 ps-md-3">
 <div class="bg-body-tertiary me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden">
-      <div class="my-3 p-3">
+      <div class="my-3 py-3">
         <h2 class="display-5">Lave-vaisselle en pose libre</h2>
         <p class="lead">Surveillance simple et intuitive de l'état.</p>
       </div>
