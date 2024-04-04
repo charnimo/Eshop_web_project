@@ -21,7 +21,7 @@ if (isset($_POST['valider'])) {
                 $quantite = 0;
 
                 // Ajouter le produit avec le chemin de l'image
-                ajouter($nom, $desc, $prix, $image_name, $quantite, $categorie);
+                ajouter($nom,$desc, $prix,$image_name, $categorie,$quantite,);
 
                 // Rafraîchissement de la page après l'ajout
                 header("Location: home.php");
@@ -246,6 +246,9 @@ $Produits = afficher();
                     Categories
                 </a>
                 <ul id="categories" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
+                <li class="sidebar-item">
+                        <a href="#" class="sidebar-link filter-category" data-category="All">ALL</a>
+                    </li>
                     <li class="sidebar-item">
                         <a href="#" class="sidebar-link filter-category" data-category="pc">PC</a>
                     </li>
@@ -527,19 +530,7 @@ function supprimerProduit(id) {
 
 <script>
 
-$(document).ready(function() {
-    $('.filter-category').click(function() {
-        var category = $(this).data('category'); // Utilisation de data-category
-        $('.row .col').each(function() {
-            var productCategory = $(this).data('category');
-            if (category === 'Tous les produits' || productCategory === category) { // Vérification de la catégorie sélectionnée
-                $(this).show();
-            } else {
-                $(this).hide();
-            }
-        });
-    });
-});
+
 $(document).ready(function() {
     $('.dropdown-item').click(function() {
         var order = $(this).attr('id');
@@ -552,19 +543,16 @@ $(document).ready(function() {
 });
 
 function trierProduits(order) {
-    var $produits = $('.row .col').get();
-    $produits.sort(function(a, b) {
-        var priceA = parseFloat($(a).data('prix'));
-        var priceB = parseFloat($(b).data('prix'));
+    var $produits = $('.row .col').sort(function(a, b) {
+        var priceA = parseFloat($(a).data('price'));
+        var priceB = parseFloat($(b).data('price'));
         if (order === 'ascending') {
             return priceA - priceB;
         } else {
             return priceB - priceA;
         }
     });
-    $.each($produits, function(index, element) {
-        $('.row').append(element);
-    });
+    $('.row').html($produits);
 }
 
 
@@ -572,8 +560,36 @@ function trierProduits(order) {
 
 
 
-
 </script>
-    
+    <!-- Add this script at the end of your HTML body -->
+<script>
+    // Function to filter and display items based on selected category
+    function filterByCategory(category) {
+        // Get all product cards
+        const productCards = document.querySelectorAll('.col[data-categorie]');
+        
+        // Loop through each product card
+        productCards.forEach(card => {
+            // Get the categories associated with the card
+            const categories = card.dataset.categorie.split(' ');
+            
+            // If the selected category is 'All' or matches any of the card's categories, display the card
+            if (category === 'All' || categories.includes(category)) {
+                card.style.display = 'block';
+            } else {
+                card.style.display = 'none';
+            }
+        });
+    }
+
+    // Event listener for category filter links
+    document.querySelectorAll('.filter-category').forEach(link => {
+        link.addEventListener('click', function() {
+            const category = this.dataset.category;
+            filterByCategory(category);
+        });
+    });
+</script>
+
 </body>
 </html>
