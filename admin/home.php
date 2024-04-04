@@ -17,8 +17,8 @@ if (isset($_POST['valider'])) {
                 $desc = htmlspecialchars(strip_tags($_POST['description']));
                 $prix = htmlspecialchars(strip_tags($_POST['price']));
                 $categorie = htmlspecialchars(strip_tags($_POST['category']));
-                // Supposons que la quantité ne provient pas du formulaire, on la met à 0 par défaut
-                $quantite = 0;
+               
+                $quantite = htmlspecialchars(strip_tags($_POST['quantite']));
 
                 // Ajouter le produit avec le chemin de l'image
                 ajouter($nom,$desc, $prix,$image_name, $categorie,$quantite,);
@@ -309,34 +309,30 @@ $Produits = afficher();
     </div>
 </aside>
 
+<!-- End of Sidebar -->
 
+ <!-- Page Content -->
 
-
-<main>
-    <!-- Contenu principal -->
-    <div class="main">
-        <!-- Contenu de la page d'accueil -->
-        <main class="content px-3 py-2">
-            <!-- Conteneur des boutons avec une marge supérieure plus importante -->
+ <section class="main">
+    <div class="content">
             <div class="mt-5">
                 <!-- Bouton Ajouter un nouveau produit -->
                 <button type="button" class="btn btn-success text-left" data-bs-toggle="modal" data-bs-target="#ajouterProduitModal">
                     <i class="fas fa-plus"></i> Ajouter un produit
                 </button>
 
-                <!-- Bouton tri -->
-                <div class="dropdown d-inline-block ms-2">
+<!-- Dropdown pour le tri des produits -->
+<div class="dropdown d-inline-block ms-2">
     <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
         <i class="fas fa-sort-amount-up-alt"></i> Sort
     </button>
-    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton" style="background-color: #f8f9fa;">
-        <li><a class="dropdown-item" href="#" id="prixCroissant"><i class="fas fa-sort-amount-up"></i> Price ascending</a></li>
-        <li><a class="dropdown-item" href="#" id="prixDécroissant"><i class="fas fa-sort-amount-down"></i> Price descending</a></li>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton">
+        <li><a class="dropdown-item" href="#" onclick="triProduits('desc')"><i class="fas fa-sort-amount-down"></i> Price descending</a></li>
+        <li><a class="dropdown-item" href="#" onclick="triProduits('asc')"><i class="fas fa-sort-amount-up"></i> Price ascending</a></li>
     </ul>
 </div>
 
-
-            </div>
+ </div>
 
 <!-- Modal pour ajouter un nouveau produit -->
 <div class="modal fade" id="ajouterProduitModal" tabindex="-1" aria-labelledby="ajouterProduitModalLabel" aria-hidden="true">
@@ -391,8 +387,8 @@ $Produits = afficher();
  
 <!-- Affichage des produits -->
 <div class="album py-5 bg-body-tertiary">
-    <div class="container">
-        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+    <div class="container" id="produitsContainer">
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3" id="produitsRow">
             <?php foreach($Produits as $produit): ?>
                 <div class="col" data-categorie="<?= $produit['category'] ?>"  data-prix="<?= $produit['price'] ?>">
                     <div class="card shadow-lg h-100 rounded-4">
@@ -446,7 +442,6 @@ $Produits = afficher();
     </div>
 <?php endforeach; ?>
 
-<!-- Modals pour afficher la description complète et modifier le produit -->
 <!-- Modifier Modal -->
 <?php foreach($Produits as $produit): ?>
     <div class="modal fade" id="modifierModal<?= $produit['id'] ?>" tabindex="-1" aria-labelledby="modifierModalLabel<?= $produit['id'] ?>" aria-hidden="true">
@@ -501,8 +496,9 @@ $Produits = afficher();
     </div>
 <?php endforeach; ?>
 
-</main>
-            </div>
+</div>
+            </section>
+            <!-- End Page Content -->
         </div>
     </main>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -531,31 +527,28 @@ function supprimerProduit(id) {
 <script>
 
 
-$(document).ready(function() {
-    $('.dropdown-item').click(function() {
-        var order = $(this).attr('id');
-        if (order === 'prixCroissant') {
-            trierProduits('ascending');
-        } else if (order === 'prixDécroissant') {
-            trierProduits('descending');
-        }
-    });
-});
+function triProduits(ordre) {
+    var produits = document.querySelectorAll('.album .col');
+    var produitsArray = Array.from(produits);
 
-function trierProduits(order) {
-    var $produits = $('.row .col').sort(function(a, b) {
-        var priceA = parseFloat($(a).data('price'));
-        var priceB = parseFloat($(b).data('price'));
-        if (order === 'ascending') {
-            return priceA - priceB;
+    produitsArray.sort(function(a, b) {
+        var prixA = parseFloat(a.getAttribute('data-prix'));
+        var prixB = parseFloat(b.getAttribute('data-prix'));
+
+        if (ordre === 'asc') {
+            return prixA - prixB;
         } else {
-            return priceB - priceA;
+            return prixB - prixA;
         }
     });
-    $('.row').html($produits);
+
+    var container = document.getElementById('produitsRow');
+    container.innerHTML = '';
+
+    produitsArray.forEach(function(produit) {
+        container.appendChild(produit);
+    });
 }
-
-
 
 
 
