@@ -4,7 +4,7 @@ if((!isset($_SESSION['user'])) && (!isset($_SESSION['admin'])) ){
     header("Location: forbidden.php");
 }   
 
-include "navbar1.php";
+include "../navbar1.php";
 ?>
 
 <!doctype html>
@@ -41,7 +41,7 @@ include "navbar1.php";
                 <?php foreach ($_SESSION["cart"] as $productName => $product): ?>
                 <div class="row border-top border-bottom">
                     <div class="row main align-items-center">
-                        <div class="col-2"><img class="img-fluid" src="<?php echo $product['image']; ?>"></div>
+                        <div class="col-2"><img class="img-fluid" src="<?php echo '../images/' . $product['image']; ?>"></div>
                         <div class="col">
                             <div class="row text-muted"><?php echo $productName; ?></div>
                             <!-- catergory here ken t7b -->
@@ -60,7 +60,7 @@ include "navbar1.php";
                 </div>
             <?php endif; ?>
 
-            <div class="back-to-shop"><a href="userproduct.php"><i class="fas fa-arrow-left fa-lg"></i></a><span class="text-muted">Back to shop</span></div>
+            <div class="back-to-shop"><a href="user.php"><i class="fas fa-arrow-left fa-lg"></i></a><span class="text-muted">Back to shop</span></div>
 
 
         </div>

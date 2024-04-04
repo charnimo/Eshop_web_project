@@ -1,7 +1,7 @@
 <?php
 
 $host = 'localhost';
-$dbname = 'project1'; // Le nom de ta base de données
+$dbname = 'eshopweb'; // Le nom de ta base de données
 $username = 'root'; // Ton nom d'utilisateur MySQL
 $password = ''; // Ton mot de passe MySQL
 

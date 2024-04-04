@@ -79,13 +79,13 @@
                     <a class="nav-link" href="homepage.php">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="products.php">Products</a>
+                    <a class="nav-link" href="client/user.php">Products</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="contact.php">Contact</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="cart.php">Cart</a>
+                    <a class="nav-link" href="client/cart.php">Cart</a>
                 </li>
                 <?php
             if (isset($_SESSION['admin']) || isset($_SESSION['user'])) {

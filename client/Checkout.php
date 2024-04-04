@@ -1,6 +1,6 @@
 <?php 
 session_start();
-include 'navbar1.php';
+include '../navbar1.php';
 if(!isset($_SESSION['cart']) || empty($_SESSION['cart'])) {
     header("Location: cart.php");
 }

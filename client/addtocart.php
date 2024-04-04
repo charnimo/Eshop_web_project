@@ -15,7 +15,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 'image' => $productImage
             );
         }
-        header("Location: userproduct.php");
+        header("Location: user.php");
         exit; 
     }
 }

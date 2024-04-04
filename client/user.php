@@ -1,7 +1,25 @@
 <?php
 
-require("../config/commandes.php");
+    //admin bark yod5el lel products.php
 
+    session_start();
+    if (isset($_SESSION['user'])) 
+    {
+        //do nothing
+
+    }
+    else if(isset($_SESSION['admin'])  )
+    {
+        header("Location: ../admin/home.php");
+        exit();
+    }
+    else
+    {
+        header("Location: ../forbidden.php");
+        exit();
+    }
+
+require("../config/commandes.php");
 // Récupérer les produits
 $Produits = afficher();
 
@@ -284,9 +302,14 @@ $Produits = afficher();
                                     <i class="fas fa-eye"></i> 
                                 </button>
                                 <!-- Bouton avec une icône de panier -->
-                                <button type="button" class="btn btn-sm btn-success" onclick="ajouterAuPanier(<?= $produit['id'] ?>)">
+                                <form method="POST" action="../client/addtocart.php">
+                                                <input type="hidden" name="product_name" value="<?php echo $produit['name']; ?>">
+                                                <input type="hidden" name="product_price" value="<?php echo $produit['price']; ?>">
+                                                <input type="hidden" name="product_image" value="<?php echo $produit['image']; ?>">
+                                <button type="submit" name="addtocart" type="button" class="btn btn-sm btn-success">
                                     <i class="fas fa-shopping-cart"></i>
                                 </button>
+                                </form>
                             </div>
                             <small class="text-muted" style="font-weight: bold;"><?= $produit['price'] ?> TND</small>
                         </div>
