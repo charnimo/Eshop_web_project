@@ -10,7 +10,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["signup"])) {
     $password = $_POST['password'];
 
     //check if user exists
-    $sql = "SELECT * FROM user WHERE username = '$username' OR email = '$email'";
+    $sql = "SELECT * FROM users WHERE username = '$username' OR email = '$email'";
     $result = mysqli_query($conn, $sql);
     if (mysqli_num_rows($result) > 0) {
         echo "User already exists";
