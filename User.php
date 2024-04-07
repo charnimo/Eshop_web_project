@@ -8,7 +8,7 @@ class User {
     }
 
     public function getUserByUsername($username) {
-        $stmt = $this->conn->prepare("SELECT * FROM users WHERE username = ?");
+        $stmt = $this->conn->prepare("SELECT * FROM users WHERE name = ?");
         $stmt->bind_param("s", $username);
         $stmt->execute();
         $result = $stmt->get_result();
@@ -19,7 +19,8 @@ class User {
 
     public function createUser($username, $email, $password) {
         $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-        $stmt = $this->conn->prepare("INSERT INTO users (username, email, password) VALUES (?, ?, ?)");
+        echo($hashed_password);
+        $stmt = $this->conn->prepare("INSERT INTO users (name, email, password) VALUES (?, ?, ?)");
         $stmt->bind_param("sss", $username, $email, $hashed_password);
         $success = $stmt->execute();
         $stmt->close();
