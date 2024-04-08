@@ -10,7 +10,8 @@ include "../navbar1.php" ?>
   <title>Dashboard - NiceAdmin Bootstrap Template</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
-
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+   
   <!-- Favicons -->
   <link href="/assets2/img/favicon.png" rel="icon">
   <link href="/assets2/img/apple-touch-icon.png" rel="apple-touch-icon">
@@ -19,7 +20,7 @@ include "../navbar1.php" ?>
   <link href="https://fonts.gstatic.com" rel="preconnect">
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 
-  <!-- Vendor CSS Files -->
+ 
   <link href="/assets2/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <link href="/assets2/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
   <link href="/assets2/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
@@ -28,16 +29,10 @@ include "../navbar1.php" ?>
   <link href="/assets2/vendor/remixicon/remixicon.css" rel="stylesheet">
   <link href="/assets2/vendor/simple-datatables/style.css" rel="stylesheet">
 
-  <!-- Template Main CSS File -->
+
   <link href="/assets2/css/style.css" rel="stylesheet">
 
-  <!-- =======================================================
-  * Template Name: NiceAdmin
-  * Template URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
-  * Updated: Mar 17 2024 with Bootstrap v5.3.3
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
+  
   <style>
     #sidebar {
     background-color:black; /* Couleur de fond de la sidebar */
@@ -303,18 +298,31 @@ include "../navbar1.php" ?>
                 </div>
 
                 <div class="card-body">
-                  <a href="#user" class="card-title">Customers <span> | This Year</span></a>
-              
-                  <div class="d-flex align-items-center">
-                      <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                          <i class="bi bi-people"></i>
-                      </div>
-                      <div class="ps-3">
-                          <h6>1244</h6>
-                          <span class="text-danger small pt-1 fw-bold">12%</span> <span class="text-muted small pt-2 ps-1">decrease</span>
-                      </div>
-                  </div>
-              </div>
+    <a href="#user" class="card-title">Customers <span> | This Year</span></a>
+    
+    <div class="d-flex align-items-center">
+        <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+            <i class="bi bi-people"></i>
+        </div>
+        <div class="ps-3">
+            <?php
+            include '../config/connexion.php';
+            // Count the number of users in the database
+            $countQuery = "SELECT COUNT(*) AS totalUsers FROM users";
+            $countResult = mysqli_query($conn, $countQuery);
+            if ($countResult && mysqli_num_rows($countResult) > 0) {
+                $row = mysqli_fetch_assoc($countResult);
+                $totalUsers = $row['totalUsers'];
+                echo "<h6>$totalUsers</h6>";
+            } else {
+                echo "<h6>0</h6>"; // Default to 0 if there are no users or an error occurs
+            }
+            ?>
+            <span class="text-muted small pt-2">Total Users</span>
+        </div>
+    </div>
+</div>
+
               </div>
 
             </div><!-- End Customers Card -->
