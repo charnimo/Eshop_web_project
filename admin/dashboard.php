@@ -641,140 +641,84 @@ include "../navbar1.php" ?>
                   </ul>
                 </div>
 
-                <div class="card-body pb-0" id="user">
-                  <h5 class="card-title">Users <span>| Today</span></h5>
+                <?php
+include '../config/connexion.php';
 
-                  <table class="table table-borderless">
-                    <thead>
-                      <tr>
-                          <th>Client</th>
-                          <th>Total</th>
-                          <th>Office</th>
-                          <th>Age</th>
-                          <th>Start date</th>
-                          <th class="no-sort text-center">Actions</th>
-                      </tr>
-                      </thead>
-                      <tbody>
-                      <tr>
-                          <td>Tiger Nixon</td>
-                          <td>System Architect</td>
-                          <td>Edinburgh</td>
-                          <td>61</td>
-                          <td>2011/04/25</td>
-                          <td class="text-center text-nowrap">
-                              <a href="#" class="btn btn-first pl-2 pr-2 btn-sm ml-1 mr-1" title="View details">
-                                  <i class="fas fa-binoculars"></i>
-                              </a>
-                              <a href="#" class="btn btn-outline-danger pl-2 pr-2 btn-sm ml-1 mr-1" title="Remove">
-                                  <i class="far fa-trash-alt"></i>
-                              </a>
-                          </td>
-                      </tr>
-                      <tr>
-                          <td>Garrett Winters</td>
-                          <td>Accountant</td>
-                          <td>Tokyo</td>
-                          <td>63</td>
-                          <td>2011/07/25</td>
-                          <td class="text-center text-nowrap">
-                              <a href="#" class="btn btn-first pl-2 pr-2 btn-sm ml-1 mr-1" title="View details">
-                                  <i class="fas fa-binoculars"></i>
-                              </a>
-                              <a href="#" class="btn btn-outline-danger pl-2 pr-2 btn-sm ml-1 mr-1" title="Remove">
-                                  <i class="far fa-trash-alt"></i>
-                              </a>
-                          </td>
-                      </tr>
-                      <tr>
-                          <td>Ashton Cox</td>
-                          <td>Junior Technical Author</td>
-                          <td>San Francisco</td>
-                          <td>66</td>
-                          <td>2009/01/12</td>
-                          <td class="text-center text-nowrap">
-                              <a href="#" class="btn btn-first pl-2 pr-2 btn-sm ml-1 mr-1" title="View details">
-                                  <i class="fas fa-binoculars"></i>
-                              </a>
-                              <a href="#" class="btn btn-outline-danger pl-2 pr-2 btn-sm ml-1 mr-1" title="Remove">
-                                  <i class="far fa-trash-alt"></i>
-                              </a>
-                          </td>
-                      </tr>
-                      <tr>
-                          <td>Cedric Kelly</td>
-                          <td>Senior Javascript Developer</td>
-                          <td>Edinburgh</td>
-                          <td>22</td>
-                          <td>2012/03/29</td>
-                          <td class="text-center text-nowrap">
-                              <a href="#" class="btn btn-first pl-2 pr-2 btn-sm ml-1 mr-1" title="View details">
-                                  <i class="fas fa-binoculars"></i>
-                              </a>
-                              <a href="#" class="btn btn-outline-danger pl-2 pr-2 btn-sm ml-1 mr-1" title="Remove">
-                                  <i class="far fa-trash-alt"></i>
-                              </a>
-                          </td>
-                      </tr>
-                      <tr>
-                          <td>Airi Satou</td>
-                          <td>Accountant</td>
-                          <td>Tokyo</td>
-                          <td>33</td>
-                          <td>2008/11/28</td>
-                          <td class="text-center text-nowrap">
-                              <a href="#" class="btn btn-first pl-2 pr-2 btn-sm ml-1 mr-1" title="View details">
-                                  <i class="fas fa-binoculars"></i>
-                              </a>
-                              <a href="#" class="btn btn-outline-danger pl-2 pr-2 btn-sm ml-1 mr-1" title="Remove">
-                                  <i class="far fa-trash-alt"></i>
-                              </a>
-                          </td>
-                      </tr>
-                      <tr>
-                          <td>Brielle Williamson</td>
-                          <td>Integration Specialist</td>
-                          <td>New York</td>
-                          <td>61</td>
-                          <td>2012/12/02</td>
-                          <td class="text-center text-nowrap">
-                              <a href="#" class="btn btn-first pl-2 pr-2 btn-sm ml-1 mr-1" title="View details">
-                                  <i class="fas fa-binoculars"></i>
-                              </a>
-                              <a href="#" class="btn btn-outline-danger pl-2 pr-2 btn-sm ml-1 mr-1" title="Remove">
-                                  <i class="far fa-trash-alt"></i>
-                              </a>
-                          </td>
-                      </tr>
-                      <tr>
-                          <td>Herrod Chandler</td>
-                          <td>Sales Assistant</td>
-                          <td>San Francisco</td>
-                          <td>59</td>
-                          <td>2012/08/06</td>
-                          <td class="text-center text-nowrap">
-                              <a href="#" class="btn btn-first pl-2 pr-2 btn-sm ml-1 mr-1" title="View details">
-                                  <i class="fas fa-binoculars"></i>
-                              </a>
-                              <a href="#" class="btn btn-outline-danger pl-2 pr-2 btn-sm ml-1 mr-1" title="Remove">
-                                  <i class="far fa-trash-alt"></i>
-                              </a>
-                          </td>
-                      </tr>
-                      </tbody>
-                  </table>
+$query = "SELECT id, name, email, password FROM users";
+$result = mysqli_query($conn, $query);
 
-                </div>
+if (!$result) {
+    die("Database query failed: " . mysqli_error($conn)); // Add error message
+}
 
-              </div>
-            </div
+function deleteUser($userId) {
+    global $conn;
+    $query = "DELETE FROM users WHERE id = {$userId}";
+    $result = mysqli_query($conn, $query);
+    if (!$result) {
+        die("Error deleting user: " . mysqli_error($conn)); // Add error message
+    }
+}
+
+?>
+
+<div class="card-body pb-0" id="user">
+    <h5 class="card-title">Users <span>| Today</span></h5>
+
+    <table class="table table-borderless">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Password</th>
+                <th class="no-sort text-center">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php while ($row = mysqli_fetch_assoc($result)) { ?>
+                <tr>
+                    <td><?php echo htmlspecialchars($row['name']); ?></td>
+                    <td><?php echo htmlspecialchars($row['email']); ?></td>
+                    <td><?php echo htmlspecialchars($row['password']); ?></td>
+                    <td class="text-center text-nowrap">
+                        <a href="#" class="btn btn-first pl-2 pr-2 btn-sm ml-1 mr-1" title="View details">
+                            <i class="fas fa-binoculars"></i>
+                        </a>
+                        <button class="btn btn-outline-danger pl-2 pr-2 btn-sm ml-1 mr-1 delete-user-btn" onclick="supprimeruser(<?= $row['id'] ?>)" title="Remove">
+                            <i class="far fa-trash-alt"></i>
+                        </button>
+                    </td>
+                </tr>
+            <?php } ?>
+        </tbody>
+    </table>
+</div>
+<script>
+  
+function supprimeruser(id) {
+    if (confirm("Êtes-vous sûr de vouloir supprimer ce user ?")) {
+        fetch('supprimer_user.php?id=' + id, {
+            method: 'DELETE'
+        })
+        .then(response => {
+            if (response.ok) {
+                location.reload();
+            } else {
+                alert("Erreur lors de la suppression du user.");
+            }
+        })
+        .catch(error => {
+            console.error('Erreur lors de la suppression du user :', error);
+            alert("Erreur lors de la suppression du user.");
+        });
+    }
+}
+</script>
+
+
+
             
          
-        <!-- Right side columns -->
-        
-
-      </div>
-    </section>
 
   </main><!-- End #main -->
 

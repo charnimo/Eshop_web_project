@@ -36,7 +36,7 @@ include "../navbar1.php";
                     <div class="col align-self-center text-right text-muted"></div>
                 </div>
             </div> 
-
+            
             <?php if(isset($_SESSION["cart"]) && is_array($_SESSION["cart"])): ?>
                 <?php foreach ($_SESSION["cart"] as $productName => $product): ?>
                 <div class="row border-top border-bottom">

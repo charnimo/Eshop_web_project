@@ -31,7 +31,15 @@ function supprimer($id)
     $stmt->execute();
     $stmt->close();
 }
+function supprimer2($id)
+{
+    global $conn;
 
+    $stmt = $conn->prepare("DELETE FROM users WHERE id=?");
+    $stmt->bind_param("i", $id);
+    $stmt->execute();
+    $stmt->close();
+}
 function afficher()
 {
     global $conn;
