@@ -488,7 +488,7 @@ include "navbar1.php" ?>
       </div>
       <div class="bg-body-tertiary shadow-sm mx-auto" style="width: 80%; height: 500px; border-radius: 21px 21px 0 0; background-image: url('assets/imgs/rog.webp'); background-size: cover; background-position: center;"></div>
       <div class="product-info">
-                    <h3>View more</h3>
+                    <h3>Good quality 😎</h3>
                 </div>
     </div>
     <div class="text-bg-warning me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden">
@@ -498,7 +498,7 @@ include "navbar1.php" ?>
       </div>
       <div class="bg-body-tertiary shadow-sm mx-auto" style="width: 80%; height: 500px; border-radius: 21px 21px 0 0; background-image: url('assets/imgs/iphone_15pro__3nx4u28gc026_large.jpg'); background-size: 300px; background-position: center;"></div>
       <div class="product-info">
-                    <h3>View more</h3>
+                    <h3>Good quality 😎</h3>
                 </div>
     </div>
   </div>
@@ -510,7 +510,7 @@ include "navbar1.php" ?>
       </div>
       <div class="bg-body-tertiary shadow-sm mx-auto" style="width: 80%; height: 500px; border-radius: 21px 21px 0 0; background-image: url('assets/imgs/lave\ vaisselle.jpg'); background-size: cover; background-position: center;"></div>
       <div class="product-info">
-                    <h3>View more</h3>
+                    <h3>Good quality 😎</h3>
                 </div>
     </div>
     <div class="text-bg-dark me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden">
@@ -520,7 +520,7 @@ include "navbar1.php" ?>
       </div>
       <div class="bg-body-tertiary shadow-sm mx-auto" style="width: 80%; height: 500px; border-radius: 21px 21px 0 0; background-image: url('assets/imgs/Tab-S8-Ultra-14.jpg'); background-size: cover; background-position: center;"></div>
       <div class="product-info">
-                    <h3>View more</h3>
+                    <h3>Good quality 😎</h3>
                 </div>
     </div>
   </div>
@@ -532,7 +532,7 @@ include "navbar1.php" ?>
       </div>
       <div class="bg-body-tertiary shadow-sm mx-auto" style="width: 80%; height: 500px; border-radius: 21px 21px 0 0; background-image: url('assets/imgs/performanceImg.jpg'); background-size: cover; background-position: center;"></div>
       <div class="product-info">
-                    <h3>View more</h3>
+                    <h3>Good quality 😎</h3>
                 </div>
     </div>
     <div class="text-bg-warning me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden">
@@ -542,7 +542,7 @@ include "navbar1.php" ?>
       </div>
       <div class="bg-body-tertiary shadow-sm mx-auto" style="width: 80%; height: 500px; border-radius: 21px 21px 0 0; background-image: url('assets/imgs/Sony_Gear_up_for_the_game.jpg'); background-size: cover; background-position: center;"></div>
       <div class="product-info">
-                    <h3>View more</h3>
+                    <h3>Good quality 😎</h3>
                 </div>
     </div>
   </div>

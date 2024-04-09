@@ -16,9 +16,21 @@ function modifier($name, $description, $price, $image, $category, $quantite, $id
 
 function supprimer($id, $pdo)
 {
+    // Fetch the image name
+    $stmt = $pdo->prepare("SELECT image FROM products WHERE id=?");
+    $stmt->execute([$id]);
+    $row = $stmt->fetch();
+
+    // Delete the image file from the uploads folder
+    if ($row && file_exists('../images/' . $row['image'])) {
+        unlink('../images/' . $row['image']);
+    }
+
+    // Delete the record from the database
     $stmt = $pdo->prepare("DELETE FROM products WHERE id=?");
     $stmt->execute([$id]);
 }
+
 
 function supprimer2($id, $pdo)
 {

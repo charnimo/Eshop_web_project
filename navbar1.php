@@ -76,7 +76,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="/Eshop_web_project/homepage.php">Home</a>
+                    <a class="nav-link" href="/Eshop_web_project/index.php">Home</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/Eshop_web_project/client/user.php">Products</a>
@@ -84,10 +84,13 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/Eshop_web_project/contact.php">Contact</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/Eshop_web_project/client/cart.php">Cart</a>
-                </li>
                 <?php
+                if(!isset($_SESSION['admin'])) {
+                echo '<li class="nav-item">';
+                    echo '<a class="nav-link" href="/Eshop_web_project/client/cart.php">Cart</a>';
+                echo "</li>";
+                }
+                
             if (isset($_SESSION['admin']) || isset($_SESSION['user'])) {
                 echo '<li class="nav-item">
                 <a class="nav-link" href="/Eshop_web_project/logout.php">Logout</a> </li>';

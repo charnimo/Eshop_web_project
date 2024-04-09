@@ -97,6 +97,7 @@ $Produits = afficher($pdo);
             position: relative;
             display: block;
             font-size: 1rem;
+            text-decoration:none;
         }
 
         .sidebar-link[data-bs-toggle="collapse"]::after {
@@ -140,7 +141,7 @@ $Produits = afficher($pdo);
         <ul class="sidebar-nav">
             <br><br><br>
             <li class="sidebar-header">
-                Tools & Components
+                Filter
             </li>
             
             <li class="sidebar-item">
@@ -168,21 +169,7 @@ $Produits = afficher($pdo);
                 </ul>
             </li>
 
-            <li class="sidebar-item">
-                <a href="#" class="sidebar-link collapsed" data-bs-toggle="collapse" data-bs-target="#auth"
-                    aria-expanded="false" aria-controls="auth">
-                    <i class="fa-regular fa-user pe-2"></i>
-                    Auth
-                </a>
-                <ul id="auth" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
-                    <li class="sidebar-item">
-                        <a href="#" class="sidebar-link">Login</a>
-                    </li>
-                    <li class="sidebar-item">
-                        <a href="#" class="sidebar-link">Register</a>
-                    </li>
-                </ul>
-            </li>
+            
             
         </ul>
     </div>
@@ -193,6 +180,10 @@ $Produits = afficher($pdo);
             <section class="main">
                 <div class="content">
                         <div class="mt-5">
+                            <!-- 
+
+                            Doesn't workkkkkkkkkkkkkkkkk
+
                              <div class="dropdown d-inline-block ms-2">
                                  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
                                   <i class="fas fa-sort-amount-up-alt"></i> Sort
@@ -202,6 +193,7 @@ $Produits = afficher($pdo);
                                    <li><a class="dropdown-item" href="#" onclick="triProduits('asc')"><i class="fas fa-sort-amount-up"></i> Price ascending</a></li>
                                 </ul>
                              </div>
+-->
 
                          </div>
                          

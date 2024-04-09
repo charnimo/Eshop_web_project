@@ -46,7 +46,7 @@
 <body>
 
 <div class="container">
-    <h1>Access Denied</h1>
+    <h1>Not logged in!</h1>
     <p>Please log in to access this page.</p>
     <a href="login.php" class="btn">Log In</a>
 </div>

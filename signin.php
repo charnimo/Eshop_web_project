@@ -18,7 +18,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["signin"])) {
             } else {
                 $_SESSION['user'] = $userData['name'];
             }
-            header("Location: homepage.php");
+            header("Location: index.php");
             exit(); 
         } else {
             echo "Incorrect username or password";

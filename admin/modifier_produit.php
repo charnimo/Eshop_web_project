@@ -3,7 +3,6 @@ require("../config/commandes.php");
 
 if (isset($_POST['valider_modification'])) {
     if (isset($_POST['name'], $_POST['price'], $_POST['quantite'], $_POST['category'], $_POST['description'], $_GET['id'])) {
-        if (!empty($_POST['name']) && !empty($_POST['price']) && !empty($_POST['quantite']) && !empty($_POST['category']) && !empty($_POST['description']) && !empty($_GET['id'])) {
             $id = $_GET['id'];
             $nom = htmlspecialchars(strip_tags($_POST['name']));
             $prix = htmlspecialchars(strip_tags($_POST['price']));
@@ -34,5 +33,4 @@ if (isset($_POST['valider_modification'])) {
             }
         }
     }
-}
 ?>

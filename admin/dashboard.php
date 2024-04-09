@@ -2,6 +2,14 @@
 include "../navbar1.php";
 require("../connection.php");
 
+    
+if (!isset($_SESSION['admin'])) 
+{
+  header('location: ../forbidden.php');
+}
+
+
+
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["approve"])) {
   $orderId = $_POST["orderId"];
 
@@ -56,7 +64,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["reject"])) {
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Dashboard - NiceAdmin Bootstrap Template</title>
+  <title>Dashboard</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
@@ -166,7 +174,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["reject"])) {
             </li>
             <li class="sidebar-item">
                 <a href="#" class="sidebar-link">
-                    <i class="fa-solid fa-list pe-2"></i>
+                    <i class=""></i>
                     Dashboard
                 </a>
             </li>
@@ -251,11 +259,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["reject"])) {
                         $stmt = $pdo->query($sql);
                         $row = $stmt->fetch();
 
-                        echo $row['orderCount'];
+                        echo $row['orderCount'] . " orders";
                         ?>
                         </h6>
 
-                      <span class="text-success small pt-1 fw-bold">12%</span> <span class="text-muted small pt-2 ps-1">increase</span>
+                      
 
                     </div>
                   </div>
@@ -292,7 +300,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["reject"])) {
                     <h6>
                       <?php 
                       // mad5oul total
-                      $sql = "SELECT SUM(totalprice) AS totalRevenue FROM orders";
+                      $sql = "SELECT SUM(totalprice) AS totalRevenue FROM orders WHERE status = 'Approved' ";
                       $stmt = $pdo->query($sql);
                       $row = $stmt->fetch();
 
@@ -302,7 +310,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["reject"])) {
                       ?>
                       </h6>
 
-                      <span class="text-success small pt-1 fw-bold">8%</span> <span class="text-muted small pt-2 ps-1">increase</span>
+                      
 
                     </div>
                   </div>
@@ -330,7 +338,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["reject"])) {
                 </div>
 
                 <div class="card-body">
-    <a href="#user" class="card-title">Customers <span> | This Year</span></a>
+    <a href="#user" class="card-title">Users <span> | This Year</span></a>
     
     <div class="d-flex align-items-center">
         <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
@@ -502,81 +510,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["reject"])) {
 </div><!-- End Recent Sales -->
 
 
-            <!-- Top Selling -->
-            <div class="col-12">
-              <div class="card top-selling overflow-auto">
-
-                <div class="filter">
-                  <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
-                  <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                    <li class="dropdown-header text-start">
-                      <h6>Filter</h6>
-                    </li>
-
-                    <li><a class="dropdown-item" href="#">Today</a></li>
-                    <li><a class="dropdown-item" href="#">This Month</a></li>
-                    <li><a class="dropdown-item" href="#">This Year</a></li>
-                  </ul>
-                </div>
-
-                <div class="card-body pb-0">
-                  <h5 class="card-title">Top Selling <span>| Today</span></h5>
-
-                  <table class="table table-borderless">
-                    <thead>
-                      <tr>
-                        <th scope="col">Preview</th>
-                        <th scope="col">Product</th>
-                        <th scope="col">Price</th>
-                        <th scope="col">Sold</th>
-                        <th scope="col">Revenue</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <th scope="row"><a href="#"><img src="../assets2/img/product-1.jpg" alt=""></a></th>
-                        <td><a href="#" class="text-primary fw-bold">Ut inventore ipsa voluptas nulla</a></td>
-                        <td>$64</td>
-                        <td class="fw-bold">124</td>
-                        <td>$5,828</td>
-                      </tr>
-                      <tr>
-                        <th scope="row"><a href="#"><img src="../assets2/img/product-2.jpg" alt=""></a></th>
-                        <td><a href="#" class="text-primary fw-bold">Exercitationem similique doloremque</a></td>
-                        <td>$46</td>
-                        <td class="fw-bold">98</td>
-                        <td>$4,508</td>
-                      </tr>
-                      <tr>
-                        <th scope="row"><a href="#"><img src="../assets2/img/product-3.jpg" alt=""></a></th>
-                        <td><a href="#" class="text-primary fw-bold">Doloribus nisi exercitationem</a></td>
-                        <td>$59</td>
-                        <td class="fw-bold">74</td>
-                        <td>$4,366</td>
-                      </tr>
-                      <tr>
-                        <th scope="row"><a href="#"><img src="../assets2/img/product-4.jpg" alt=""></a></th>
-                        <td><a href="#" class="text-primary fw-bold">Officiis quaerat sint rerum error</a></td>
-                        <td>$32</td>
-                        <td class="fw-bold">63</td>
-                        <td>$2,016</td>
-                      </tr>
-                      <tr>
-                        <th scope="row"><a href="#"><img src="../assets2/img/product-5.jpg" alt=""></a></th>
-                        <td><a href="#" class="text-primary fw-bold">Sit unde debitis delectus repellendus</a></td>
-                        <td>$79</td>
-                        <td class="fw-bold">41</td>
-                        <td>$3,239</td>
-                      </tr>
-                    </tbody>
-                  </table>
-
-                </div>
-
-              </div>
-            </div><!-- End Top Selling -->
             
-
 
 
 

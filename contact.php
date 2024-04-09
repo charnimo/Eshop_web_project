@@ -3,7 +3,7 @@
 <!doctype html>
 <html lang="en">
   <head>
-  	<title>Contact Form 07</title>
+  	<title>Contact us!</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -105,7 +105,7 @@
 				        			<span class="fa fa-arrow-left"></span>
 				        		</div>
 				        		<div class="text pl-3">
-					            <p> <a href="/Eshop_web_project/homepage.php">Go Back</a></p>
+					            <p> <a href='#' onclick="back()">Go Back</a></p>
 					          </div>
 				          </div>
 			          </div>
@@ -118,4 +118,12 @@
     
 	</section>
 	</body>
+
+	<script>
+		function back()
+		{
+			window.history.back();
+		}
+	</script>
+
 </html>

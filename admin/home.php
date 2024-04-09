@@ -1,5 +1,11 @@
 <?php session_start();
-include "../navbar1.php" ?>
+include "../navbar1.php" ;
+if (!isset($_SESSION['admin'])) 
+{
+  header('location: ../forbidden.php');
+}
+?>
+
 <?php
 
 require("../config/commandes.php");
@@ -140,6 +146,7 @@ $Produits = afficher($pdo);
             position: relative;
             display: block;
             font-size: 1rem;
+            text-decoration:none;
         }
 
         .sidebar-link[data-bs-toggle="collapse"]::after {
@@ -184,10 +191,10 @@ $Produits = afficher($pdo);
         <!-- Sidebar Navigation -->
         <ul class="sidebar-nav">
             <li class="sidebar-header">
-                Tools & Components
+                Options
             </li>
             <li class="sidebar-item">
-                <a href="Dashboard.php" class="sidebar-link">
+                <a href="Dashboard.php" class="sidebar-link" >
                     <i class="fa-solid fa-list pe-2"></i>
                     Dashboard
                 </a>
@@ -233,7 +240,10 @@ $Produits = afficher($pdo);
                     <i class="fas fa-plus"></i> Ajouter un produit
                 </button>
 
-<!-- Dropdown pour le tri des produits -->
+<!-- Dropdown pour le tri des produits 
+
+doesn't worrrrrrrrrrrrkkkkk 
+
 <div class="dropdown d-inline-block ms-2">
     <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
         <i class="fas fa-sort-amount-up-alt"></i> Sort
@@ -243,7 +253,7 @@ $Produits = afficher($pdo);
         <li><a class="dropdown-item" href="#" onclick="triProduits('asc')"><i class="fas fa-sort-amount-up"></i> Price ascending</a></li>
     </ul>
 </div>
-
+-->
  </div>
 
 <!-- Modal pour ajouter un nouveau produit -->
