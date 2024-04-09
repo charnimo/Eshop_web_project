@@ -1,55 +1,35 @@
 <?php
 
-require("connexion.php"); // Inclure le fichier de connexion
+require("../connection.php"); // Include the connection file
 
-function ajouter($name, $description, $price, $image, $category, $quantite)
+function ajouter($name, $description, $price, $image, $category, $quantite, $pdo)
 {
-    global $conn; // Utiliser la connexion définie dans connexion.php
-
-    $stmt = $conn->prepare("INSERT INTO products (name, description, price, image, category, quantite) VALUES (?, ?, ?, ?, ?, ?)");
-    $stmt->bind_param("ssdssi", $name, $description, $price, $image, $category, $quantite);
-    $stmt->execute();
-    $stmt->close();
+    $stmt = $pdo->prepare("INSERT INTO products (name, description, price, image, category, quantite) VALUES (?, ?, ?, ?, ?, ?)");
+    $stmt->execute([$name, $description, $price, $image, $category, $quantite]);
 }
 
-function modifier($name, $description, $price, $image, $category, $quantite, $id)
+function modifier($name, $description, $price, $image, $category, $quantite, $id, $pdo)
 {
-    global $conn;
-
-    $stmt = $conn->prepare("UPDATE products SET name = ?, description = ?, price = ?, image = ?, category = ?, quantite = ?  WHERE id = ?");
-    $stmt->bind_param("ssdssii", $name, $description, $price, $image, $category, $quantite, $id);
-    $stmt->execute();
-    $stmt->close();
+    $stmt = $pdo->prepare("UPDATE products SET name = ?, description = ?, price = ?, image = ?, category = ?, quantite = ?  WHERE id = ?");
+    $stmt->execute([$name, $description, $price, $image, $category, $quantite, $id]);
 }
 
-function supprimer($id)
+function supprimer($id, $pdo)
 {
-    global $conn;
-
-    $stmt = $conn->prepare("DELETE FROM products WHERE id=?");
-    $stmt->bind_param("i", $id);
-    $stmt->execute();
-    $stmt->close();
+    $stmt = $pdo->prepare("DELETE FROM products WHERE id=?");
+    $stmt->execute([$id]);
 }
-function supprimer2($id)
-{
-    global $conn;
 
-    $stmt = $conn->prepare("DELETE FROM users WHERE id=?");
-    $stmt->bind_param("i", $id);
-    $stmt->execute();
-    $stmt->close();
+function supprimer2($id, $pdo)
+{
+    $stmt = $pdo->prepare("DELETE FROM users WHERE id=?");
+    $stmt->execute([$id]);
 }
-function afficher()
-{
-    global $conn;
 
-    $result = $conn->query("SELECT * FROM products ORDER BY id DESC");
-    $data = array();
-    while ($row = $result->fetch_assoc()) {
-        $data[] = $row;
-    }
-    return $data;
+function afficher($pdo)
+{
+    $stmt = $pdo->query("SELECT * FROM products ORDER BY id DESC");
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
 ?>

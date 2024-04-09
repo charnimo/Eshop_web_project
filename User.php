@@ -8,22 +8,20 @@ class User {
     }
 
     public function getUserByUsername($username) {
-        $stmt = $this->conn->prepare("SELECT * FROM users WHERE name = ?");
-        $stmt->bind_param("s", $username);
+        $stmt = $this->conn->prepare("SELECT * FROM users WHERE name = :username");
+        $stmt->bindParam(':username', $username);
         $stmt->execute();
-        $result = $stmt->get_result();
-        $user = $result->fetch_assoc();
-        $stmt->close();
+        $user = $stmt->fetch(PDO::FETCH_ASSOC);
         return $user;
     }
 
     public function createUser($username, $email, $password) {
         $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-        echo($hashed_password);
-        $stmt = $this->conn->prepare("INSERT INTO users (name, email, password) VALUES (?, ?, ?)");
-        $stmt->bind_param("sss", $username, $email, $hashed_password);
+        $stmt = $this->conn->prepare("INSERT INTO users (name, email, password) VALUES (:username, :email, :password)");
+        $stmt->bindParam(':username', $username);
+        $stmt->bindParam(':email', $email);
+        $stmt->bindParam(':password', $hashed_password);
         $success = $stmt->execute();
-        $stmt->close();
         return $success;
     }
 }

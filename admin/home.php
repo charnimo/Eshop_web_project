@@ -4,17 +4,16 @@ include "../navbar1.php" ?>
 
 require("../config/commandes.php");
 
-// Traitement de l'ajout de produit
+// add product
 if (isset($_POST['valider'])) {
     if (isset($_FILES['image']['name'], $_POST['name'], $_POST['description'], $_POST['price'], $_POST['category'])) {
         $image_name = $_FILES['image']['name'];
         $image_temp = $_FILES['image']['tmp_name'];
 
-        // Vérifier si aucune erreur lors de l'envoi du fichier
         if ($_FILES['image']['error'] === UPLOAD_ERR_OK) {
-            // Déplacer le fichier téléchargé vers le dossier de destination
+            // upload
             if (move_uploaded_file($image_temp, "../images/" . $image_name)) {
-                // Récupérer les autres données du formulaire
+                // params
                 $nom = htmlspecialchars(strip_tags($_POST['name']));
                 $desc = htmlspecialchars(strip_tags($_POST['description']));
                 $prix = htmlspecialchars(strip_tags($_POST['price']));
@@ -22,25 +21,22 @@ if (isset($_POST['valider'])) {
                
                 $quantite = htmlspecialchars(strip_tags($_POST['quantite']));
 
-                // Ajouter le produit avec le chemin de l'image
-                ajouter($nom,$desc, $prix,$image_name, $categorie,$quantite,);
+                ajouter($nom,$desc, $prix,$image_name, $categorie,$quantite,$pdo);
 
-                // Rafraîchissement de la page après l'ajout
+                // refresh
                 header("Location: home.php");
                 exit;
             } else {
-                echo "Erreur lors du déplacement du fichier.";
+                echo "Error Moving.";
             }
         } else {
-            echo "Erreur lors du téléchargement de l'image.";
+            echo "Error Loading";
         }
     } else {
-        echo "Tous les champs du formulaire doivent être remplis.";
+        echo "Fill all fields";
     }
 }
-
-// Récupérer les produits
-$Produits = afficher();
+$Produits = afficher($pdo);
 
 ?>
 
@@ -56,7 +52,6 @@ $Produits = afficher();
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>  
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
 
-    <!-- Ajout de vos styles CSS personnalisés -->
     <style>
        body {
             font-family: 'Poppins', sans-serif;
@@ -100,14 +95,14 @@ $Produits = afficher();
 
 /* Sidebar */
 #sidebar {
-    background-color:black; /* Couleur de fond de la sidebar */
-    padding-top: 70px; /* Ajustement pour compenser la navbar */
-    height: 100vh; /* Hauteur de la sidebar */
-    position: fixed; /* Pour rester fixe même en faisant défiler */
+    background-color:black; 
+    padding-top: 70px; 
+    height: 100vh; 
+    position: fixed; 
     top: 0;
     left: 0;
-    width: 250px; /* Largeur de la sidebar */
-    overflow-y: auto; /* Permettre le défilement vertical si nécessaire */
+    width: 250px; 
+    overflow-y: auto; 
 }
 
         .main {
@@ -164,12 +159,14 @@ $Produits = afficher();
             transform: rotate(45deg);
             transition: all .2s ease-out;
         }
+
+    
         .product-image {
-    max-width: 100%; /* Limite la largeur de l'image à 100% de la largeur du conteneur */
-    max-height: 200px; /* Limite la hauteur de l'image à 400 pixels */
+    max-width: 100%; 
+    max-height: 200px; 
 }
 .col-divider {
-    border-right: 1px solid #ccc; /* Ajoute une bordure à droite */
+    border-right: 1px solid #ccc; 
 }
 
 
@@ -190,7 +187,7 @@ $Produits = afficher();
                 Tools & Components
             </li>
             <li class="sidebar-item">
-                <a href="#" class="sidebar-link">
+                <a href="Dashboard.php" class="sidebar-link">
                     <i class="fa-solid fa-list pe-2"></i>
                     Dashboard
                 </a>
@@ -219,48 +216,7 @@ $Produits = afficher();
                     </li>
                 </ul>
             </li>
-
-            <li class="sidebar-item">
-                <a href="#" class="sidebar-link collapsed" data-bs-toggle="collapse" data-bs-target="#auth"
-                    aria-expanded="false" aria-controls="auth">
-                    <i class="fa-regular fa-user pe-2"></i>
-                    Auth
-                </a>
-                <ul id="auth" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
-                    <li class="sidebar-item">
-                        <a href="#" class="sidebar-link">Login</a>
-                    </li>
-                    <li class="sidebar-item">
-                        <a href="#" class="sidebar-link">Register</a>
-                    </li>
-                </ul>
-            </li>
-            <li class="sidebar-header">
-                Multi Level Nav
-            </li>
-            <li class="sidebar-item">
-                <a href="#" class="sidebar-link collapsed" data-bs-toggle="collapse" data-bs-target="#multi"
-                    aria-expanded="false" aria-controls="multi">
-                    <i class="fa-solid fa-share-nodes pe-2"></i>
-                    Multi Level
-                </a>
-                <ul id="multi" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
-                    <li class="sidebar-item">
-                        <a href="#" class="sidebar-link collapsed" data-bs-toggle="collapse"
-                            data-bs-target="#multi-two" aria-expanded="false" aria-controls="multi-two">
-                            Two Links
-                        </a>
-                        <ul id="multi-two" class="sidebar-dropdown list-unstyled collapse">
-                            <li class="sidebar-item">
-                                <a href="#" class="sidebar-link">Link 1</a>
-                            </li>
-                            <li class="sidebar-item">
-                                <a href="#" class="sidebar-link">Link 2</a>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
-            </li>
+           
         </ul>
     </div>
 </aside>
@@ -351,7 +307,6 @@ $Produits = afficher();
                         <div class="card-body d-flex flex-column justify-content-between">
                             <div style="text-align: center;">
                                 <h5 class="card-title" style="font-family: 'Times New Roman', Times, serif; font-weight: bold;"><?= $produit['name'] ?></h5>
-                                <!-- Assurez-vous que le chemin de l'image est correct -->
                                 <img src="../images/<?= $produit['image'] ?>" class="img-fluid rounded" style="max-height: 150px;">
                             </div>
                             <p class="card-text"><?= substr($produit['description'], 0, 100); ?>...</p>
@@ -362,9 +317,12 @@ $Produits = afficher();
                                 <button type="button" class="btn btn-sm btn-warning me-2" data-bs-toggle="modal" data-bs-target="#modifierModal<?= $produit['id'] ?>">
                                     <i class="fas fa-pencil-alt"></i>
                                 </button>
-                                <button type="button" class="btn btn-sm btn-danger" onclick="supprimerProduit(<?= $produit['id'] ?>)">
-                                    <i class="fas fa-trash-alt"></i> 
-                                </button>
+                                <form action="supprimer_produit.php" method="POST" style="display: inline;">
+                                    <input type="hidden" name="id" value="<?= $produit['id'] ?>">
+                                    <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce produit ?');">
+                                        <i class="fas fa-trash-alt"></i> 
+                                    </button>
+                                </form>
                             </div>
                             <small class="text-muted" style="font-weight: bold;"><?= $produit['price'] ?> TND</small>
                         </div>
@@ -374,6 +332,7 @@ $Produits = afficher();
         </div>
     </div>
 </div>
+
 <!-- Modals pour afficher la description complète et modifier le produit -->
 <?php foreach($Produits as $produit): ?>
     <div class="modal fade" id="descriptionModal<?= $produit['id'] ?>" tabindex="-1" aria-labelledby="descriptionModalLabel<?= $produit['id'] ?>" aria-hidden="true">
@@ -412,7 +371,7 @@ $Produits = afficher();
                     <div class="modal-body">
                         <div class="mb-3">
                             <label for="image" class="form-label">Nouvelle image du produit</label>
-                            <input type="file" class="form-control" id="image" name="image" accept="image/*" required>
+                            <input type="file" class="form-control" id="image" name="image" accept="image/*" >
                         </div>
                         <div class="mb-3">
                             <label for="nom" class="form-label">Nom du produit</label>
@@ -459,7 +418,7 @@ $Produits = afficher();
     </main>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-  
+
 function supprimerProduit(id) {
     if (confirm("Êtes-vous sûr de vouloir supprimer ce produit ?")) {
         fetch('supprimer_produit.php?id=' + id, {
@@ -482,7 +441,7 @@ function supprimerProduit(id) {
 
 <script>
 
-
+//sort (doesnt work here but works in client idk why)
 function triProduits(ordre) {
     var produits = document.querySelectorAll('.album .col');
     var produitsArray = Array.from(produits);
@@ -512,17 +471,12 @@ function triProduits(ordre) {
 </script>
     <!-- Add this script at the end of your HTML body -->
 <script>
-    // Function to filter and display items based on selected category
+    // filetr
     function filterByCategory(category) {
-        // Get all product cards
         const productCards = document.querySelectorAll('.col[data-categorie]');
-        
-        // Loop through each product card
+
         productCards.forEach(card => {
-            // Get the categories associated with the card
             const categories = card.dataset.categorie.split(' ');
-            
-            // If the selected category is 'All' or matches any of the card's categories, display the card
             if (category === 'All' || categories.includes(category)) {
                 card.style.display = 'block';
             } else {
@@ -530,8 +484,6 @@ function triProduits(ordre) {
             }
         });
     }
-
-    // Event listener for category filter links
     document.querySelectorAll('.filter-category').forEach(link => {
         link.addEventListener('click', function() {
             const category = this.dataset.category;

@@ -1,8 +1,9 @@
 <?php
-
+session_start();
+    require('../navbar1.php');
     //admin bark yod5el lel products.php
 
-    session_start();
+    
     if (isset($_SESSION['user'])) 
     {
         //do nothing
@@ -20,8 +21,8 @@
     }
 
 require("../config/commandes.php");
-// Récupérer les produits
-$Produits = afficher();
+
+$Produits = afficher($pdo);
 
 ?>
 
@@ -37,7 +38,6 @@ $Produits = afficher();
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>  
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
 
-    <!-- Ajout de vos styles CSS personnalisés -->
     <style>
        body {
             font-family: 'Poppins', sans-serif;
@@ -48,47 +48,18 @@ $Produits = afficher();
             background-size: cover;
         }
 
-        .navbar {
-    background-color: black;
-}
 
-.navbar-brand {
-    color: #fff;
-    font-size: 25px;
-    text-transform: uppercase;
-    font-weight: bold;
-    letter-spacing: 2px;
-}
-
-.navbar-nav {
-    text-align: center;
-}
-
-.navbar-nav .nav-link {
-    color: #fff;
-    padding: .5rem 1rem;
-    transition: color 0.3s;
-}
-
-.navbar-nav .nav-link:hover,
-.navbar-nav .nav-link:focus {
-    color: bisque;
-}
-
-#user-status {
-    color: white;
-}
 
 /* Sidebar */
 #sidebar {
-    background-color:black; /* Couleur de fond de la sidebar */
-    padding-top: 70px; /* Ajustement pour compenser la navbar */
-    height: 100vh; /* Hauteur de la sidebar */
-    position: fixed; /* Pour rester fixe même en faisant défiler */
+    background-color:black; 
+    padding-top: 70px; 
+    height: 100vh; 
+    position: fixed; 
     top: 0;
     left: 0;
-    width: 250px; /* Largeur de la sidebar */
-    overflow-y: auto; /* Permettre le défilement vertical si nécessaire */
+    width: 250px; 
+    overflow-y: auto; 
 }
 
         .main {
@@ -146,11 +117,11 @@ $Produits = afficher();
             transition: all .2s ease-out;
         }
         .product-image {
-    max-width: 100%; /* Limite la largeur de l'image à 100% de la largeur du conteneur */
-    max-height: 200px; /* Limite la hauteur de l'image à 400 pixels */
+    max-width: 100%; 
+    max-height: 200px; 
 }
 .col-divider {
-    border-right: 1px solid #ccc; /* Ajoute une bordure à droite */
+    border-right: 1px solid #ccc; 
 }
 
 
@@ -158,53 +129,7 @@ $Produits = afficher();
 </head>
 <body>
     <main>
-    <nav class="navbar navbar-expand-lg navbar-light fixed-top">
-    <div class="container">
-        <a class="navbar-brand" href="#">SHOP</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="homepage.php">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="products.php">Products</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="contact.php">Contact</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="cart.php">Cart</a>
-                </li>
-                <?php
-                if (isset($_SESSION['admin']) || isset($_SESSION['user'])) {
-                    echo '<li class="nav-item">
-                    <a class="nav-link" href="/Eshop_web_project/logout.php">Logout</a>
-                </li>';
-                } else {
-                    echo '<li class="nav-item">
-                    <a class="nav-link" href="/Eshop_web_project/login.php">Login</a>
-                    </li>';
-                }
-                ?>
-            </ul>
-            <div id="user-status" class="ml-3">
-                <?php
-                if (isset($_SESSION['admin'])) {
-                    echo "Logged in as:  Admin";
-                } else if (isset($_SESSION['user'])) {
-                    echo "Logged in as:  " . $_SESSION['user'];
-                } else {
-                    echo "Not logged in";
-                }
-                ?>
-            </div>
-        </div>
-    </div>
-</nav>
+
 
 <div class="wrapper expanded">
             <!-- Sidebar -->
@@ -279,7 +204,7 @@ $Produits = afficher();
                              </div>
 
                          </div>
-                         <br>
+                         
 
                     
 <!-- Affichage des produits -->                      
@@ -292,12 +217,12 @@ $Produits = afficher();
                         <div class="card-body d-flex flex-column justify-content-between">
                             <div style="text-align: center;">
                                 <h5 class="card-title" style="font-family: 'Times New Roman', Times, serif; font-weight: bold;"><?= $produit['name'] ?></h5>
-                                <!-- Assurez-vous que le chemin de l'image est correct -->
+                                
                                 <img src="../images/<?= $produit['image'] ?>" class="img-fluid rounded" style="max-height: 150px;">
                             </div>
                             <p class="card-text"><?= substr($produit['description'], 0, 100); ?>...</p>
                             <div class="d-flex justify-content-start align-items-center mb-2">
-                                <!-- Bouton de description -->
+                                
                                 <button type="button" class="btn btn-sm btn-primary me-2" data-bs-toggle="modal" data-bs-target="#descriptionModal<?= $produit['id'] ?>">
                                     <i class="fas fa-eye"></i> 
                                 </button>
@@ -380,23 +305,13 @@ function triProduits(ordre) {
     });
 }
 
-
-
-
 </script>
-    <!-- Add this script at the end of your HTML body -->
 <script>
-    // Function to filter and display items based on selected category
+    
     function filterByCategory(category) {
-        // Get all product cards
         const productCards = document.querySelectorAll('.col[data-categorie]');
-        
-        // Loop through each product card
         productCards.forEach(card => {
-            // Get the categories associated with the card
             const categories = card.dataset.categorie.split(' ');
-            
-            // If the selected category is 'All' or matches any of the card's categories, display the card
             if (category === 'All' || categories.includes(category)) {
                 card.style.display = 'block';
             } else {
@@ -405,7 +320,6 @@ function triProduits(ordre) {
         });
     }
 
-    // Event listener for category filter links
     document.querySelectorAll('.filter-category').forEach(link => {
         link.addEventListener('click', function() {
             const category = this.dataset.category;

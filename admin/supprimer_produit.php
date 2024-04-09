@@ -1,11 +1,11 @@
 <?php
 require("../config/commandes.php");
 
-if (isset($_GET['id'])) {
-    $id = $_GET['id'];
-    supprimer($id);
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['id'])) {
+    $id = $_POST['id'];
+    supprimer($id, $pdo);
 }
 
-header("Location: ../admin/home.php"); // Correction ici : rediriger vers le bon chemin
+header("Location: ../admin/home.php"); 
 exit;
 ?>

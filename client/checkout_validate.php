@@ -1,6 +1,9 @@
 <?php
 session_start();
 require('../fpdf/fpdf.php');
+require('../connection.php');
+
+//pdf genereate
 
 $pdf = new FPDF();
 $pdf->AddPage();
@@ -51,4 +54,33 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 
 $pdf->Output();
+
+//database stuff insert into table orders(id, customre, total_price, order_date, status)
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $totalPrice = array_sum(array_map(function($product) {
+        return $product['quantity'] * $product['price'];
+    }, $_SESSION['cart']));
+
+$itemsArray = [];
+foreach ($_SESSION['cart'] as $productName => $productInfo) {
+    $itemsArray[$productName] = $productInfo['quantity'];
+}
+
+$itemsJson = json_encode($itemsArray);
+
+$sql = "INSERT INTO orders (customer, totalprice, items, date, status) VALUES (:customer, :totalprice, :items, NOW(), 'Pending')";
+$stmt = $pdo->prepare($sql);
+
+$stmt->bindParam(':customer', $firstname_lastname);
+$stmt->bindParam(':totalprice', $totalPrice);
+$stmt->bindParam(':items', $itemsJson);
+
+    $firstname_lastname = $firstname . ' ' . $lastname;
+    $stmt->execute();
+
+    $orderId = $pdo->lastInsertId();
+
+    unset($_SESSION['cart']);
+}
+
 ?>

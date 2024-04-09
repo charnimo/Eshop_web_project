@@ -8,20 +8,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["signin"])) {
     $username = $_POST['username'];
     $password = $_POST['password'];
 
-    $user = new User($conn);
-    $userData = $user->getUserByUsername($username);
+    try {
+        $user = new User($pdo);
+        $userData = $user->getUserByUsername($username);
 
-    if ($userData && password_verify($password, $userData['password'])) {
-        if ($userData['id'] == 0) {
-            $_SESSION['admin'] = 1;
+        if ($userData && password_verify($password, $userData['password'])) {
+            if ($userData['id'] == 0) {
+                $_SESSION['admin'] = 1;
+            } else {
+                $_SESSION['user'] = $userData['name'];
+            }
+            header("Location: homepage.php");
+            exit(); 
         } else {
-            $_SESSION['user'] = $userData['name'];
+            echo "Incorrect username or password";
         }
-        header("Location: homepage.php");
-    } else {
-        echo "Incorrect username or password";
+    } catch(PDOException $e) {
+        echo "Error: " . $e->getMessage();
     }
 
-    $conn->close();
+    $pdo = null;
 }
 ?>
